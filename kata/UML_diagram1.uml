@@ -837,9 +837,9 @@
 <XPD:OBJ name="OwnedViews[27]" type="UMLClassView" guid="9eRAzupOh0CZwT2NCU70MwAA">
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
-<XPD:ATTR name="Left" type="integer">700</XPD:ATTR>
-<XPD:ATTR name="Top" type="integer">96</XPD:ATTR>
-<XPD:ATTR name="Width" type="integer">115</XPD:ATTR>
+<XPD:ATTR name="Left" type="integer">696</XPD:ATTR>
+<XPD:ATTR name="Top" type="integer">64</XPD:ATTR>
+<XPD:ATTR name="Width" type="integer">123</XPD:ATTR>
 <XPD:ATTR name="Height" type="integer">95</XPD:ATTR>
 <XPD:REF name="Model">T0RmPbIrg02QleyS7gfNCAAA</XPD:REF>
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="JuNnbk35k0eymMwhtvFDJAAA">
@@ -1120,7 +1120,7 @@
 <XPD:OBJ name="OwnedViews[31]" type="UMLAssociationView" guid="K7zL8k1fd06EfWjNz/HBxwAA">
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
-<XPD:ATTR name="Points" type="Points">700,144;495,147</XPD:ATTR>
+<XPD:ATTR name="Points" type="Points">696,117;495,138</XPD:ATTR>
 <XPD:REF name="Model">8UfGxgfx8kWwjnMYyE1KXQAA</XPD:REF>
 <XPD:REF name="Head">i/OSsIVKVEu/cZtclNIz/QAA</XPD:REF>
 <XPD:REF name="Tail">9eRAzupOh0CZwT2NCU70MwAA</XPD:REF>
@@ -2541,6 +2541,23 @@
 <XPD:REF name="Views[1]">TOKucj8ujkGexJOUZBpQLQAA</XPD:REF>
 <XPD:REF name="Views[2]">Ok5erNOrrEarqktFLMEKhwAA</XPD:REF>
 <XPD:REF name="Views[3]">Iamt9cs3s0u4XDpBqynJugAA</XPD:REF>
+<XPD:ATTR name="#Operations" type="integer">1</XPD:ATTR>
+<XPD:OBJ name="Operations[0]" type="UMLOperation" guid="S2PWbUmSRkqOZaeo4NWvzwAA">
+<XPD:ATTR name="Name" type="string">givePoints</XPD:ATTR>
+<XPD:ATTR name="Visibility" type="UMLVisibilityKind">vkPrivate</XPD:ATTR>
+<XPD:REF name="Owner">T0RmPbIrg02QleyS7gfNCAAA</XPD:REF>
+<XPD:ATTR name="#Parameters" type="integer">2</XPD:ATTR>
+<XPD:OBJ name="Parameters[0]" type="UMLParameter" guid="40atufIS+ke6YivIW55f6QAA">
+<XPD:ATTR name="DirectionKind" type="UMLParameterDirectionKind">pdkReturn</XPD:ATTR>
+<XPD:ATTR name="TypeExpression" type="string">viod</XPD:ATTR>
+<XPD:REF name="BehavioralFeature">S2PWbUmSRkqOZaeo4NWvzwAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="Parameters[1]" type="UMLParameter" guid="tq7hZ3sZKkasEuNLmt+qpwAA">
+<XPD:ATTR name="Name" type="string">i</XPD:ATTR>
+<XPD:ATTR name="TypeExpression" type="string">int</XPD:ATTR>
+<XPD:REF name="BehavioralFeature">S2PWbUmSRkqOZaeo4NWvzwAA</XPD:REF>
+</XPD:OBJ>
+</XPD:OBJ>
 <XPD:ATTR name="#Associations" type="integer">2</XPD:ATTR>
 <XPD:REF name="Associations[0]">JR2Lqz5nyEq+ktIsw7SQZwAA</XPD:REF>
 <XPD:REF name="Associations[1]">2klf2zey4E6/ITeoeB14NwAA</XPD:REF>

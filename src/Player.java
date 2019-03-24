@@ -15,7 +15,26 @@ package com.company;//
 public class Player {
 	private int points;
 	private Orangutan myOran;
-	private Control player;
+
 	private void givePoints(int i) {
+		points += i;
 	}
+
+	public int getPoints() {
+		return points;
+	}
+
+	public void setPoints(int points) {
+		this.points = points;
+	}
+
+	public Orangutan getMyOran() {
+		return myOran;
+	}
+
+	public void setMyOran(Orangutan myOran) {
+		this.myOran = myOran;
+	}
+
+
 }

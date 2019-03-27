@@ -7,17 +7,16 @@ public class Jatek extends Field {
 
 	Random rand = new Random();
 	public void Update() {
-		if (rand.nextBoolean())return;
-
-		for (Field field : getNei()) {
+		if (rand.nextBoolean()) return;//Random sípol
+		for (Field field : getNei()) {//A mező szomszédjaira
 			if (field.getContain()!=null)
 			{
-				field.getContain().action(this);
+				field.getContain().action(this);//Sípol
 			}
 		}
-		if (getContain() != null)
+		if (getContain() != null)//A mezőre
 		{
-			getContain().action(this);
+			getContain().action(this);//Sípol
 		}
 	}
 }

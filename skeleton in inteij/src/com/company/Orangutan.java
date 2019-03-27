@@ -9,7 +9,7 @@ public class Orangutan extends Unit {
 	}
 
 
-	public void exit() {
+	public void exit() {//TODO
 		if (getHand2()!= null)
 		{
 			getHand2().exit();
@@ -17,7 +17,7 @@ public class Orangutan extends Unit {
 		}
 	}
 	
-	public void die() {
+	public void die() {//TODO
 	}
 
 	@Override

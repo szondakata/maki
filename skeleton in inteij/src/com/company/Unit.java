@@ -3,9 +3,9 @@ package com.company;
 
 public abstract class Unit implements Action {
 
-	private Field iamon;//nemár srácok ezt átneveztem
-	private Unit hand1;
-	private Unit hand2;
+	private Field iamon;//Melyik mezőn vagyok
+	private Unit hand1;//"Hátra" mutató kéz
+	private Unit hand2;//"Előre" mutató kéz
 
 
 	public Field getIamon() {

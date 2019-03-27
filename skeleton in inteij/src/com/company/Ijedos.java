@@ -2,10 +2,10 @@ package com.company;
 
 
 public class Ijedos extends Panda {
-	public void Action(Jatek j) {
+	public void Action(Jatek j) {//Ha megijed
 		if (getHand1() != null)
 		{
-			release();
+			release();//Elengedi a kezeket
 		}
 	}
 }

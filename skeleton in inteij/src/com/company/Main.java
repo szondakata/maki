@@ -196,8 +196,85 @@ public class Main {
         }
     }
 
-    static public void orangutanexit_test(){}
-    static public void pandadies_test(){}
+    static public void orangutanexit_test(){
+        Control control = new Control();
+        Player player1 = new Player();
+        Player player2 = new Player();
+        Orangutan orangutan = new Orangutan();
+        Orangutan enemy = new Orangutan();
+        ArrayList<Field> fields = new ArrayList<>();
+        Entry entry = new Entry();
+        fields.add(entry);
+        fields.add(new Field());
+        fields.add(new Field());
+        fields.add(new Field());
+        fields.add(new Field());
+        Exit exit = new Exit();
+        fields.add(exit);
+        control.setP1(player1);
+        control.setP2(player2);
+        control.orangutans.add(orangutan);
+        control.orangutans.add(enemy);
+        Panda p1 = new Panda();
+        Panda p2 = new Panda();
+        Panda p3 = new Panda();
+        control.pandas.add(p1);
+        control.pandas.add(p2);
+        control.pandas.add(p3);
+        fields.get(0).setContain(p1);
+        p1.setIamon(fields.get(0));
+        fields.get(2).setContain(p2);
+        p2.setIamon(fields.get(2));
+        fields.get(3).setContain(p3);
+        p3.setIamon(fields.get(3));
+        fields.get(4).setContain(orangutan);
+        orangutan.setIamon(fields.get(4));
+
+        p2.setHand1(p3);
+        p3.setHand1(orangutan);
+        orangutan.setHand2(p3);
+        p3.setHand2(p2);
+
+        control.move(orangutan,fields.get(5));
+        control.move(orangutan,fields.get(1));
+
+        System.out.println("Orangutan  exit test done!");
+    }
+
+    static public void pandadies_test(){
+        Control control = new Control();
+        Player player1 = new Player();
+        Player player2 = new Player();
+        Orangutan orangutan = new Orangutan();
+        Orangutan enemy = new Orangutan();
+        ArrayList<Field> fields = new ArrayList<>();
+        fields.add(new Field());
+        fields.add(new Field());
+        fields.add(new Field());
+        control.setP1(player1);
+        control.setP2(player2);
+        control.orangutans.add(orangutan);
+        control.orangutans.add(enemy);
+        Panda p1 = new Panda();
+        Panda p2 = new Panda();
+        control.pandas.add(p1);
+        control.pandas.add(p2);
+        fields.get(0).setContain(p1);
+        p1.setIamon(fields.get(0));
+        fields.get(1).setContain(p2);
+        p2.setIamon(fields.get(1));
+        fields.get(2).setContain(orangutan);
+        orangutan.setIamon(fields.get(2));
+        p1.setHand2(p2);
+        p2.setHand1(p1);
+        p2.die();
+        p1.die();
+        control.move(orangutan,fields.get(1));
+
+        System.out.println("Panda dies test done!");
+    }
+
+
     static public void furnitur_test(){}
     static public void sitting_test(){}
     static public void scaring_test(){}

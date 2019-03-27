@@ -14,7 +14,7 @@ package com.company;//
 
 public class Panda extends Unit {
 
-	private Control pandas;
+	private Control pandas;//ez minek?
 
 	public void grab(Orangutan orangutan) {//totál bullshit (a szerkesztő megjegyzése)
 		Unit p2 = orangutan.getHand2();

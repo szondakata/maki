@@ -20,7 +20,7 @@ public class Field {
 	}
 
 	public void setContain(Unit contain) {
-		this.stepped(contain);//TODO steppedet megvalósítani
+		this.stepped(contain);
 		this.contain = contain;
 	}
 
@@ -29,8 +29,7 @@ public class Field {
 	public void Update() {
 	}
 	
-	public void stepped(Unit u) {
-	}
+	public void stepped(Unit u) {}
 
 	public Control getMap() {
 		return map;

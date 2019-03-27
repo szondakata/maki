@@ -41,7 +41,7 @@ public  class Control {
 
 	public ArrayList<Orangutan> getOrangutans() {
 		return orangutans;
-	}//TODO ezt törölni
+	}
 
 	public void addOrangutan(Orangutan o) {
 		this.orangutans.add(o);
@@ -54,7 +54,7 @@ public  class Control {
 
 	public ArrayList<Panda> getPandas() {
 		return pandas;
-	}//TODO ezt törölni
+	}
 
 	public void addPanda(Panda p) {
 		this.pandas.add(p);

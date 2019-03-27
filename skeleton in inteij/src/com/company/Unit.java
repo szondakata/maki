@@ -37,7 +37,14 @@ public abstract class Unit implements Action {
 	
 	public void die() {
 
+		if(getIamon().getContain()!=null)
+			getIamon().setContain(null);
+
+		setIamon(null);
+
 		this.setAlive(false);
+
+
 
 	}
 

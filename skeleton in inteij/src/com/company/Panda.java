@@ -22,6 +22,7 @@ public class Panda extends Unit {
 		else{
 			Field temp=getIamon();
 			move(f);
+			die();
 			if (getHand2()!=null)
 				getHand2().exit(temp);
 		}

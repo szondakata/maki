@@ -31,9 +31,12 @@ public class Field {
 	public void setNei(ArrayList<Field> nei) {
 		this.nei = nei;
 	}
+<<<<<<< HEAD
 	public void addNei(Field f){
 		nei.add(f);
 		f.addNei(this);
 	}
 >>>>>>> sárosi
+=======
+>>>>>>> parent of 68ac3cb... exit kills
 }

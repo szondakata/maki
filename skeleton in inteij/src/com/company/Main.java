@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-<<<<<<< HEAD
     static boolean fuss=true;
 
     static Scanner scanner = new Scanner(System.in);

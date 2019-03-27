@@ -35,7 +35,6 @@ public abstract class Unit implements Action {
 	
 	public void exit() {}
 	
-	public void die() {}
 
 	//Field f: ahová mozog az egység
 	//Mozgást valósít meg false-al tér vissza ha olyan mezőre próbál lépni ami foglalt

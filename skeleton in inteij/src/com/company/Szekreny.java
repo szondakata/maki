@@ -17,4 +17,10 @@ public class Szekreny extends Field {
 			}
 		}
 	}
+<<<<<<< HEAD
+=======
+
+	public void stepped(Panda p) {
+	}
+>>>>>>> sárosi
 }

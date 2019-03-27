@@ -22,8 +22,18 @@ public class Field {
 		return nei;
 	}
 
+<<<<<<< HEAD
 
 	public void Update() {
 	}//Nem csinál semmit
 	public void stepped(Unit u) {}//Nem csinál semmit
+=======
+	public void setNei(ArrayList<Field> nei) {
+		this.nei = nei;
+	}
+	public void addNei(Field f){
+		nei.add(f);
+		f.addNei(this);
+	}
+>>>>>>> sárosi
 }

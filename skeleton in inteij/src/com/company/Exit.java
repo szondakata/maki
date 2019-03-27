@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Exit extends Field {
 
 
-    Entry entry;
+    private Entry entry;
 
 
     ArrayList<Unit> talon=new ArrayList<>();
@@ -27,5 +27,9 @@ public class Exit extends Field {
 
     public void setContain(Unit contain) {
         this.stepped(contain);
+    }
+
+    public void setEntry(Entry entry) {
+        this.entry = entry;
     }
 }

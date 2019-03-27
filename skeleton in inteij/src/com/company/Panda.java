@@ -17,8 +17,7 @@ public class Panda extends Unit {
 	}
 	
 	public void exit() {}
-	
-	public void die() {}
+
 
 	@Override
 	public void action(Csoki cs) {}

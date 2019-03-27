@@ -4,9 +4,19 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
+
+
 public class Main {
 
+    public static void test(Orangutan o){
+        System.out.println("o");
+    }
 
+
+    public static void test(Panda p){
+        System.out.println("p");
+    }
     static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
         System.out.println("Mit szeretnél tesztelni?");
@@ -235,6 +245,7 @@ public class Main {
         orangutan.setHand2(p3);
         p3.setHand2(p2);
 
+
         control.move(orangutan,fields.get(5));
         control.move(orangutan,fields.get(1));
 
@@ -270,6 +281,9 @@ public class Main {
         p2.die();
         p1.die();
         control.move(orangutan,fields.get(1));
+
+
+
 
         System.out.println("Panda dies test done!");
     }

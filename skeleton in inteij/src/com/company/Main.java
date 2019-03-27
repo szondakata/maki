@@ -5,132 +5,201 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
+
+
     static Scanner scanner = new Scanner(System.in);
-    static Field f1 = new Field();
-    static ArrayList<Field> mezok = new ArrayList<Field>();
-    static Control control;
-    static Player p2;
-    static Player p1;
+    public static void main(String[] args) {
+        System.out.println("Mit szeretnél tesztelni?");
+        System.out.println("01 - MovePanda");
+        System.out.println("02 - MoveOrangutan");
+        System.out.println("03 - Release");
+        System.out.println("04 - End");
+        System.out.println("05 - UseWardrobe");
+        System.out.println("06 - Orangutan exit");
+        System.out.println("07 - Panda Dies");
+        System.out.println("08 - Furniture Interac");
+        System.out.println("09 - Sitting");
+        System.out.println("10 - Scaring");
+        System.out.println("11 - Jumping");
 
-
-    public static void start() {
-
-
-        switch (scanner.nextInt()) {
+        switch (scanner.nextInt()){
             case 1:
-                Orangutan o1 = new Orangutan();
-                control.addOrangutan(o1);
-                p1.setMyOran(o1);
-                f1.setFieldOn(o1);
-
-                lancol(f1);
+                movepanda_test();
                 break;
             case 2:
-                Panda p = new Panda();
-                control.addPanda(p);
-                f1.setFieldOn(p);
+                moveorangutan_test();
                 break;
             case 3:
-                Ijedos i = new Ijedos();
-                control.addPanda(i);
-                f1.setFieldOn(i);
+                release_test();
                 break;
             case 4:
-                Almos a = new Almos();
-                control.addPanda(a);
-                f1.setFieldOn(a);
+                end_test();
                 break;
             case 5:
-                Ugralos u = new Ugralos();
-                control.addPanda(u);
-                f1.setFieldOn(u);
-                break;
-        }
-    }
-
-    static Field milyenmezo() {
-        Field f1 = null;
-
-        switch (scanner.nextInt()) {
-            case 1:
-                f1 = new Field();
-                break;
-            case 2:
-                f1 = new Breakable();
-                break;
-            case 3:
-                Entry e = new Entry();
-                control.setE(e);
-                return e;
-            case 4:
-                f1 = new Exit();
-                break;
-            case 5:
-                f1 = new Csoki();
+                usewardrobe_test();
                 break;
             case 6:
-                f1 = new Fotel() ;
+                orangutanexit_test();
                 break;
             case 7:
-                f1 = new Jatek() ;
+                pandadies_test();
                 break;
             case 8:
-                f1 = new Szekreny() ;
+                furnitur_test();
                 break;
-        }
-
-
-        return f1;
-    }
-
-
-    public static void main(String[] args) {
-        control = new Control();
-        p1 = new Player();
-        p2 = new Player();
-        control.setP1(p1);
-        control.setP2(p2);
-
-
-        start();
-
-
-
-    }
-
-    private static void lancol(Field f) {
-
-        if (scanner.nextInt() == 2)
-            DoYouWantMove();
-
-
-        switch (scanner.nextInt()) {
-            case 1:
-                Field ujf = milyenmezo();
-
-                f.getNei().add(ujf);
-
-
-                f1.setFieldOn(new Panda());
+            case 9:
+                sitting_test();
                 break;
-            case 2:
-                f1.setFieldOn(new Ijedos());
+            case 10:
+                scaring_test();
                 break;
-            case 3:
-                f1.setFieldOn(new Almos());
+            case 11:
+                jumping_test();
                 break;
-            case 4:
-                f1.setFieldOn(new Ugralos());
-                break;
-            case 5:
-                break;
+                default:
+                    System.out.println("Érvénytelen input");
+                    break;
         }
 
     }
 
+    public static void movepanda_test(){
+        ArrayList<Field> fields = new ArrayList<>();
+        fields.add(new Field());
+        fields.add(new Field());
+        fields.add(new Field());
+        fields.add(new Exit());
+        Panda p1 = new Panda();
+        Panda p2 = new Panda();
+        p2.setIamon(fields.get(0));
+        fields.get(0).setContain(p2);
+        p1.setIamon(fields.get(1));
+        fields.get(1).setContain(p1);
+        p2.setHand1(p1);
+        p1.setHand2(p2);
+        p1.move(fields.get(2));
+        p1.move(fields.get(3));
+        System.out.println("Move panda test done!");
+    }
 
-    private static void DoYouWantMove() {
+    static public void moveorangutan_test(){
+        Control control = new Control();
+        ArrayList<Field> fields = new ArrayList<>();
+        fields.add(new Field());
+        fields.add(new Field());
+        fields.add(new Field());
+        fields.add(new Field());
+        fields.add(new Field());
+        Panda p1 = new Panda();
+        Panda p2 = new Panda();
+        control.pandas.add(p1);
+        control.pandas.add(p2);
+        Orangutan orangutan = new Orangutan();
+        Orangutan enemy = new Orangutan();
+        control.orangutans.add(orangutan);
+        control.orangutans.add(enemy);
+        Player player1 = new Player();
+        Player player2 = new Player();
+        control.setP1(player1);
+        control.setP2(player2);
+        p1.setIamon(fields.get(0));
+        fields.get(0).setContain(p1);
+        orangutan.setIamon(fields.get(1));
+        fields.get(1).setContain(orangutan);
+        p2.setIamon(fields.get(3));
+        fields.get(3).setContain(p2);
+        enemy.setIamon(fields.get(4));
+        fields.get(4).setContain(enemy);
+        orangutan.setHand2(p1);
+        p1.setHand1(orangutan);
+        control.move(control.orangutans.get(0),fields.get(2));
+        control.move(control.orangutans.get(0),fields.get(3));
+        control.move(control.orangutans.get(0),fields.get(4));
+        System.out.println("Move Orangutan test done!");
+    }
+
+    static public void release_test(){
+        ArrayList<Field> fields = new ArrayList<>();
+        fields.add(new Field());
+        fields.add(new Field());
+        fields.add(new Field());
+        fields.add(new Field());
+        fields.add(new Field());
+        fields.add(new Field());
+        Panda p1 = new Panda();
+        Panda p2 = new Panda();
+        Panda p3 = new Panda();
+        Panda p4 = new Panda();
+        Orangutan orangutan = new Orangutan();
+        fields.get(0).setContain(p1);
+        p1.setIamon(fields.get(0));
+        fields.get(1).setContain(p2);
+        p2.setIamon(fields.get(1));
+        fields.get(2).setContain(p3);
+        p3.setIamon(fields.get(2));
+        fields.get(3).setContain(p4);
+        p4.setIamon(fields.get(3));
+        fields.get(4).setContain(orangutan);
+        orangutan.setIamon(fields.get(4));
+        orangutan.move(fields.get(3));
+        orangutan.move(fields.get(2));
+        orangutan.move(fields.get(1));
+        orangutan.move(fields.get(0));
+        p2.release();
+        System.out.println("Realease test done!");
     }
 
 
+    static public void end_test(){
+        Orangutan orangutan = new Orangutan();
+        Orangutan enemy = new Orangutan();
+        ArrayList<Field> fields = new ArrayList<>();
+        fields.add(new Field());
+        fields.add(new Field());
+        fields.add(new Field());
+        Control control = new Control();
+        Player player1 = new Player();
+        Player player2 = new Player();
+        control.setP1(player1);
+        control.setP2(player2);
+        control.orangutans.add(orangutan);
+        control.orangutans.add(enemy);
+        orangutan.setIamon(fields.get(0));
+        fields.get(0).setContain(orangutan);
+        control.move(control.orangutans.get(0),fields.get(1));
+        System.out.println("End test done!");
+    }
+
+    static public void usewardrobe_test(){
+        Orangutan orangutan = new Orangutan();
+        ArrayList<Field> fields = new ArrayList<>();
+        fields.add(new Field());
+        Szekreny sz1 = new Szekreny();
+        Szekreny sz2 = new Szekreny();
+        fields.add(sz1);
+        fields.add(sz2);
+        fields.add(new Field());
+        fields.add(new Field());
+        orangutan.setIamon(fields.get(4));
+        fields.get(4).setContain(orangutan);
+        sz1.setSzekrenypar(fields.get(0));
+        sz2.setSzekrenypar(fields.get(3));
+        orangutan.move(fields.get(3));
+        orangutan.move(fields.get(2));
+        if (fields.get(0).getContain()==orangutan)
+        {
+            System.out.println("Wardrobe test done!");
+        }
+        else
+        {
+            System.out.println("fail");
+        }
+    }
+
+    static public void orangutanexit_test(){}
+    static public void pandadies_test(){}
+    static public void furnitur_test(){}
+    static public void sitting_test(){}
+    static public void scaring_test(){}
+    static public void jumping_test(){}
 }

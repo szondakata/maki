@@ -19,6 +19,7 @@ public class Exit extends Field {
 
     public void stepped(Panda p) {
         if (p != null) {
+            entry.getContain().die();
             talon.add(getContain());
             p.exit(this);
             setContain(null);

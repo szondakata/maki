@@ -11,7 +11,7 @@ public class Control {
     Entry e;
     Player p1;
     Player p2;
-
+    int pandaCount;
 
     public void move(Orangutan myO, Field ToF) {//Eltérő
         if (!End()) {
@@ -48,7 +48,7 @@ public class Control {
     }
 
     public boolean End() {//TODO
-        int pandaCount=0;
+        pandaCount=0;
         for (Panda panda:pandas) {
             if(panda.isAlive)
                 pandaCount++;

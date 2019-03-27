@@ -14,6 +14,7 @@ public class Orangutan extends Unit {
 		{
 			Field temp=getIamon();
 			setIamon(null);
+			move(f);
 			getHand2().exit(temp);
 			myPlayer.givePoints(6);//6 pont cause whynot
 		}

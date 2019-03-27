@@ -1,5 +1,7 @@
 package com.company;
 
+import sun.plugin.dom.css.Counter;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -48,7 +50,13 @@ public class Control {
     }
 
     public boolean End() {//TODO
-        if (orangutans.get(0).isAliive && orangutans.get(1).isAliive && pandas.size() < 1) {  //ha egy orángután meghal vagy elfogynak a pandák vége a játéknak
+        int pandaCount=0;
+            for (Panda panda : pandas)
+                if (panda.isAlive())
+                    pandaCount++;
+
+        if (orangutans.get(0).isAlive() && orangutans.get(1).isAlive() &&pandaCount<1)
+        {  //ha egy orángután meghal vagy elfogynak a pandák vége a játéknak
             System.out.println("Jatekos 1 pontszam: " + p1.getPoints() + "\nJatekos 2 pontszam: " + p2.getPoints());
             return true;
         }

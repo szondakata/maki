@@ -16,9 +16,9 @@ public class Player {
 	private int points;
 	private Orangutan myOran;
 
-	private void givePoints(int i) {
+	public void givePoints(int i) {
 		points += i;
-	}
+	}//privát volt de mé'?
 
 	public int getPoints() {
 		return points;

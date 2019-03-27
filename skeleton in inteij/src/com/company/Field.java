@@ -14,6 +14,16 @@ import java.util.ArrayList;
 
 public class Field {
 	private Control map;
+
+	public Unit getContain() {
+		return contain;
+	}
+
+	public void setContain(Unit contain) {
+		this.stepped(contain);//TODO steppedet megvalósítani
+		this.contain = contain;
+	}
+
 	private Unit contain;
 	private ArrayList<Field> nei;
 	public void Update() {

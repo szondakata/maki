@@ -25,18 +25,23 @@ public  class Control {
 	public void init() {
 	}
 	
-	public void move(Unit u, Field f) {
+	public void move(Orangutan myO, Field ToF) {//Eltérő
+		if(!myO.move(ToF))
+		{
+			ToF.getContain().grab(myO);//Szekvencia orángután-move else ág kiemelve
+		}
 	}
 	
 	public void Start() {
 	}
 	
 	public void End() {
+
 	}
 
 	public ArrayList<Orangutan> getOrangutans() {
 		return orangutans;
-	}
+	}//TODO ezt törölni
 
 	public void addOrangutan(Orangutan o) {
 		this.orangutans.add(o);
@@ -49,7 +54,7 @@ public  class Control {
 
 	public ArrayList<Panda> getPandas() {
 		return pandas;
-	}
+	}//TODO ezt törölni
 
 	public void addPanda(Panda p) {
 		this.pandas.add(p);

@@ -70,10 +70,21 @@ public Unit()
 	}
 	
 	public void die() {
+<<<<<<< HEAD
 		logger.depthP();
 		logger.writeMessage(this.toString()+".die()");
 		logger.depthM();
+=======
+
+		if(getIamon().getContain()!=null)
+			getIamon().setContain(null);
+
+		setIamon(null);
+
+>>>>>>> sárosi
 		this.setAlive(false);
+
+
 
 	}
 

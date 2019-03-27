@@ -4,6 +4,8 @@ package com.company;
 public class Logger {
 
     private static int depth = -1;
+    private static int depth = 0;
+>>>>>>> sárosi
 
 
     public static int getDepth() {
@@ -26,6 +28,14 @@ public class Logger {
        for(int i =0; i<depth;i++)
            System.out.print("\t");
         System.out.println(message);
+
+    public static void writeMessage(String message) {
+        depth++;
+       for(int i =0; i<depth;i++)
+           System.out.print("\t");
+        System.out.println(message);
+
+        depth--;
     }
 
 

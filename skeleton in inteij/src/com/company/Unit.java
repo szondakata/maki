@@ -7,7 +7,6 @@ public abstract class Unit implements Action {
 	private Field iamon;//Melyik mezőn vagyok
 	private Unit hand1;//"Hátra" mutató kéz
 	private Unit hand2;//"Előre" mutató kéz
-	private boolean isAlive=true;
 
 
 	public Field getIamon() {

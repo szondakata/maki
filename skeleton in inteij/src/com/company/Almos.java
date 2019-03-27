@@ -6,7 +6,7 @@ import java.util.Random;
 public class Almos extends Panda {
 
 	private int energy;
-	private boolean isTired=true;
+	private boolean isEnergic =true;
 	Random rand = new Random();
 
 	public Almos() {
@@ -14,28 +14,29 @@ public class Almos extends Panda {
 	}
 
 	public void Action(Fotel f) {//Csak az Álmos panda reagál rá
-		if(energy==0) {
+		if(!isEnergic) { //ha fáradt leül
+
 			if (getHand1() != null) {
 				release();
 				move(f);
 				if (energy == 0) {
-					isTired = !isTired;
+					isEnergic = !isEnergic;
 					energy = rand.nextInt(4);
+					energy++; //mivel leült ezért töltődik az energiája
+					if(energy==5) //ha kipihenti magát akkor újra energikus lesz
+						isEnergic =true;
 				}
 			}
-		}else{
-			energy--;
-			if(energy==5)
-				isTired=true;
-
 		}
 	}
 
 	@Override
 	public boolean move(Field f)
 	{
-		if (isTired) {
-			energy--;
+		if (isEnergic) {  //ha nem fárasdt lép
+			energy--;     //elkezd fáradni
+			if(energy<1) //ha elfogy az energiája akkor elfárad
+				isEnergic=false;
 			if (f.getContain() == null)//Léphetek-e oda?
 			{
 

@@ -7,7 +7,7 @@ public class Szekreny extends Field {
 	}
 
 	private Field szekrenypar;//A szekrény párjának egyik szomszédos mezője
-
+	@Override
 	public void stepped(Unit unit) {
 		if(unit != null)
 		{

@@ -151,11 +151,51 @@ public class Main {
 
 
     static public void end_test(){
-
+        Orangutan orangutan = new Orangutan();
+        Orangutan enemy = new Orangutan();
+        ArrayList<Field> fields = new ArrayList<>();
+        fields.add(new Field());
+        fields.add(new Field());
+        fields.add(new Field());
+        Control control = new Control();
+        Player player1 = new Player();
+        Player player2 = new Player();
+        control.setP1(player1);
+        control.setP2(player2);
+        control.orangutans.add(orangutan);
+        control.orangutans.add(enemy);
+        orangutan.setIamon(fields.get(0));
+        fields.get(0).setContain(orangutan);
+        control.move(control.orangutans.get(0),fields.get(1));
+        System.out.println("End test done!");
     }
 
+    static public void usewardrobe_test(){
+        Orangutan orangutan = new Orangutan();
+        ArrayList<Field> fields = new ArrayList<>();
+        fields.add(new Field());
+        Szekreny sz1 = new Szekreny();
+        Szekreny sz2 = new Szekreny();
+        fields.add(sz1);
+        fields.add(sz2);
+        fields.add(new Field());
+        fields.add(new Field());
+        orangutan.setIamon(fields.get(4));
+        fields.get(4).setContain(orangutan);
+        sz1.setSzekrenypar(fields.get(0));
+        sz2.setSzekrenypar(fields.get(3));
+        orangutan.move(fields.get(3));
+        orangutan.move(fields.get(2));
+        if (fields.get(0).getContain()==orangutan)
+        {
+            System.out.println("Wardrobe test done!");
+        }
+        else
+        {
+            System.out.println("fail");
+        }
+    }
 
-    static public void usewardrobe_test(){}
     static public void orangutanexit_test(){}
     static public void pandadies_test(){}
     static public void furnitur_test(){}

@@ -14,11 +14,11 @@ public class Control {
 
 
     public void move(Orangutan myO, Field ToF) {//Eltérő
-        if(!End()) {
+        if (!End()) {
             if (!myO.move(ToF)) {
                 ToF.getContain().grab(myO);//Szekvencia orángután-move else ág kiemelve
             }
-        }else {
+        } else {
             System.out.println("A játék már véget ért!");
         }
 
@@ -28,8 +28,8 @@ public class Control {
         if (End())
             return;
         else {
-            for (Panda panda:pandas) { //minden panda egy a vele szomszédos mezőre lép vagy ott marad
-                Random rand=new Random();
+            for (Panda panda : pandas) { //minden panda egy a vele szomszédos mezőre lép vagy ott marad
+                Random rand = new Random();
                 panda.move(panda.getIamon().getNei().get(rand.nextInt(panda.getIamon().getNei().size())));
 
             }
@@ -37,8 +37,8 @@ public class Control {
 
     }
 
-    public void updateItems(){
-        for (Field item:items) { //minden itemnek meghívódik az updateje
+    public void updateItems() {
+        for (Field item : items) { //minden itemnek meghívódik az updateje
             item.Update();
 
         }
@@ -48,7 +48,7 @@ public class Control {
     }
 
     public boolean End() {//TODO
-        if (orangutans.size() < 2 || pandas.size() < 1) {  //ha egy orángután meghal vagy elfogynak a pandák vége a játéknak
+        if (orangutans.get(0).isAliive && orangutans.get(1).isAliive && pandas.size() < 1) {  //ha egy orángután meghal vagy elfogynak a pandák vége a játéknak
             System.out.println("Jatekos 1 pontszam: " + p1.getPoints() + "\nJatekos 2 pontszam: " + p2.getPoints());
             return true;
         }

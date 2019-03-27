@@ -27,7 +27,8 @@ public class Logger {
         depth--;
     }
 
-    public void writeMessage(String message) {
+    public static void writeMessage(String message) {
+        depth++;
        for(int i =0; i<depth;i++)
            System.out.print("\t");
         System.out.println(message);

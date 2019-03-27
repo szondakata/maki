@@ -9,10 +9,12 @@ public class Orangutan extends Unit {
 	}
 
 
-	public void exit() {//TODO
+	public void exit(Field f) {
 		if (getHand2()!= null)
 		{
-			getHand2().exit();
+			Field temp=getIamon();
+			setIamon(null);
+			getHand2().exit(temp);
 			myPlayer.givePoints(6);//6 pont cause whynot
 		}
 	}

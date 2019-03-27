@@ -33,7 +33,7 @@ public abstract class Unit implements Action {
 	
 	public void grab(Unit u) {} //Üres osztály
 	
-	public void exit() {}
+	public void exit(Field f) {}
 	
 	public void die() {
 

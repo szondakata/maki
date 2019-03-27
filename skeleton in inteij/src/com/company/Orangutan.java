@@ -4,8 +4,6 @@ package com.company;
 public class Orangutan extends Unit {
 	private Player myPlayer;
 	private Control orans;
-	public void grab(Unit u) {
-	}
 
 
 

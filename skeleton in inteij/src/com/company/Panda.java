@@ -3,9 +3,9 @@ package com.company;
 
 public class Panda extends Unit {
 
-	private Control pandas;//ez minek?
-
-	public void grab(Orangutan orangutan) {//totál bullshit (a szerkesztő megjegyzése)
+	//Orángután hívja meg a lánc kialakításához
+	//Orangutan orangutan: Hívó orángután
+	public void grab(Orangutan orangutan) {
 		Unit p2 = orangutan.getHand2();
 		setHand2(p2);
 		if (p2 != null)
@@ -16,24 +16,16 @@ public class Panda extends Unit {
 		this.setHand1(orangutan);
 	}
 	
-	public void exit() {
-	}
+	public void exit() {}
 	
-	public void die() {
-	}
+	public void die() {}
 
 	@Override
-	public void action(Csoki cs) {
-
-	}
+	public void action(Csoki cs) {}
 
 	@Override
-	public void action(Jatek j) {
-
-	}
+	public void action(Jatek j) {}
 
 	@Override
-	public void action(Fotel f) {
-
-	}
+	public void action(Fotel f) {}
 }

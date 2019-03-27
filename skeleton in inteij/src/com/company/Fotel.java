@@ -12,5 +12,9 @@ public class Fotel extends Field {//ez a szekvencia is szar volt *clap clap* kez
 				}
 			}
 		}
+		else
+		{
+			getContain().action(this); //A fáradtság csökkentéséhez
+		}
 	}
 }

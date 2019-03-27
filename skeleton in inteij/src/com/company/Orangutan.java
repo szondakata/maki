@@ -16,9 +16,7 @@ public class Orangutan extends Unit {
 			myPlayer.givePoints(6);//6 pont cause whynot
 		}
 	}
-	
-	public void die() {//TODO
-	}
+
 
 	@Override
 	public void action(Csoki cs) {}

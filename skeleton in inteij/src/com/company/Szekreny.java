@@ -2,20 +2,19 @@ package com.company;
 
 public class Szekreny extends Field {
 
-	private Szekreny szekrenypar;
+	public void setSzekrenypar(Field szekrenypar) {
+		this.szekrenypar = szekrenypar;
+	}
 
-	public void stepped(Orangutan o) {//ebből mért van kettő
-		//ésmegint totál értelmetlen a szekvencia
-		if(o != null)
+	private Field szekrenypar;//A szekrény párjának egyik szomszédos mezője
+
+	public void stepped(Unit unit) {
+		if(unit != null)
 		{
-			if(szekrenypar.getContain() == null)
+			if(szekrenypar.getContain() == null)//Ha nem áll senki a szekrényen
 			{
-				o.move(szekrenypar);
-				setContain(o);
+				unit.move(szekrenypar);//Belép a szekrénybe
 			}
 		}
-	}
-	
-	public void stepped(Panda p) {
 	}
 }

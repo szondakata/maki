@@ -48,15 +48,21 @@ public class Control {
     }
 
     public boolean End() {//TODO
+<<<<<<< HEAD
         pandaCount=0;
+=======
         int pandaCount=0;
+>>>>>>> sárosi
         for (Panda panda:pandas) {
             if(panda.isAlive)
                 pandaCount++;
 
         }
+<<<<<<< HEAD
         if (orangutans.get(0).isAlive && orangutans.get(1).isAlive && pandaCount < 1) {  //ha egy orángután meghal vagy elfogynak a pandák vége a játéknak
+=======
         if (orangutans.get(0).isAlive && orangutans.get(1).isAlive && pandas.size() < 1) {  //ha egy orángután meghal vagy elfogynak a pandák vége a játéknak
+>>>>>>> sárosi
             System.out.println("Jatekos 1 pontszam: " + p1.getPoints() + "\nJatekos 2 pontszam: " + p2.getPoints());
             return true;
         }

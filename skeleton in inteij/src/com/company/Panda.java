@@ -16,9 +16,18 @@ public class Panda extends Unit {
 		this.setHand1(orangutan);
 	}
 	
-	public void exit() {}
-	
-	public void die() {}
+	public void exit(Field f) {
+		if(getHand1()==null)
+			return;
+		else{
+			Field temp=getIamon();
+			move(f);
+			if (getHand2()!=null)
+				getHand2().exit(temp);
+		}
+
+	}
+
 
 	@Override
 	public void action(Csoki cs) {}

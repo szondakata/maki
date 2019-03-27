@@ -3,9 +3,10 @@ package com.company;
 
 public abstract class Unit implements Action {
 
-	private Field iamon;//nemár srácok ezt átneveztem
-	private Unit hand1;
-	private Unit hand2;
+	boolean isAlive = true;
+	private Field iamon;//Melyik mezőn vagyok
+	private Unit hand1;//"Hátra" mutató kéz
+	private Unit hand2;//"Előre" mutató kéz
 
 
 	public Field getIamon() {
@@ -32,9 +33,13 @@ public abstract class Unit implements Action {
 	
 	public void grab(Unit u) {} //Üres osztály
 	
-	public void exit() {}
+	public void exit(Field f) {}
 	
-	public void die() {}
+	public void die() {
+
+		this.setAlive(false);
+
+	}
 
 	//Field f: ahová mozog az egység
 	//Mozgást valósít meg false-al tér vissza ha olyan mezőre próbál lépni ami foglalt
@@ -66,5 +71,13 @@ public abstract class Unit implements Action {
         {
             getHand2().release();
         }
+	}
+
+	public boolean isAlive() {
+		return isAlive;
+	}
+
+	public void setAlive(boolean alive) {
+		isAlive = alive;
 	}
 }

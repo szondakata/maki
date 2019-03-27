@@ -54,7 +54,7 @@ public class Control {
                 pandaCount++;
 
         }
-        if (orangutans.get(0).isAlive && orangutans.get(1).isAlive && pandaCount < 1) {  //ha egy orángután meghal vagy elfogynak a pandák vége a játéknak
+        if (orangutans.get(0).isAlive && orangutans.get(1).isAlive && pandas.size() < 1) {  //ha egy orángután meghal vagy elfogynak a pandák vége a játéknak
             System.out.println("Jatekos 1 pontszam: " + p1.getPoints() + "\nJatekos 2 pontszam: " + p2.getPoints());
             return true;
         }

@@ -63,7 +63,7 @@ public Unit()
 		logger.depthM();
 	} //Üres osztály
 	
-	public void exit() {
+	public void exit(Field field) {
 		logger.depthP();
 		logger.writeMessage(this.toString()+".exit()");
 		logger.depthM();

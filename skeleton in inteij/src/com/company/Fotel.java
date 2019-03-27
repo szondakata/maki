@@ -1,11 +1,11 @@
 package com.company;
 
 
-public class Fotel extends Field {
-	public void Update() {//Fotel hirdeti magát hogy itt van
+public class Fotel extends Field {//ez a szekvencia is szar volt *clap clap* kezdem unni
+	public void Update() {
 		if (getContain()==null)
 		{
-			for (Field field : getNei()) {//A szomszédain
+			for (Field field : getNei()) {
 				if (field.getContain()!=null)
 				{
 					field.getContain().action(this);

@@ -4,6 +4,10 @@ public class Player {
 	private int points;
 	private Orangutan myOran;
 
+	public void givePoints(int i) {
+		points += i;
+	}//privát volt de mé'?
+
 	public int getPoints() {
 		return points;
 	}
@@ -20,7 +24,5 @@ public class Player {
 		this.myOran = myOran;
 	}
 
-	public void givePoints(int i) {
-		points += i;
-	}//Pontok hozzáadása
+
 }

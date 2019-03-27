@@ -8,15 +8,15 @@ public class Csoki extends Field {
 
 	public void Update() {
 		if (rand.nextBoolean()) return;//Random sípol
-			for (Field field : getNei()) {//A mező szomszédjaira
+			for (Field field : getNei()) {
 				if (field.getContain()!=null)
 				{
-					field.getContain().action(this);//Sípol
+					field.getContain().action(this);
 				}
 			}
-			if (getContain() != null)//A mezőre
+			if (getContain() != null)
 			{
-				getContain().action(this);//Sípol
+				getContain().action(this);
 			}
 	}
 }

@@ -3,7 +3,7 @@ package com.company;
 
 
 public class Ugralos extends Panda {
-	public void Action(Csoki cs) {
+	public void action(Csoki cs) {
 		logger.depthP();
 		logger.writeMessage(this.toString()+".Action("+cs.toString()+")");
 

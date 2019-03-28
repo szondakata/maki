@@ -62,9 +62,9 @@ public Field getIamon() {
 		logger.depthM();
 	} //Üres osztály
 	
-	public void exit() {
+	public void exit(Field field) {
 		logger.depthP();
-		logger.writeMessage(this.toString()+".exit()");
+		logger.writeMessage(this.toString()+".exit("+(field==null ? "Null": field.toString())+")");
 		logger.depthM();
 	}
 	
@@ -86,9 +86,10 @@ public Field getIamon() {
 		logger.writeMessage(this.toString()+".move("+f.toString()+")");
 		if (f.getContain()==null)//Léphetek-e oda?
 		{
-			f.setContain(this);
 			Field temp = this.getIamon();
-			temp.setContain(null);
+			f.setContain(this);
+
+			if(!temp.equals(iamon)) temp.setContain(null);
 			if (this.getHand1() != null)
 			{
 				this.getHand1().move(temp);

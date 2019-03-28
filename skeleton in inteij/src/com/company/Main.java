@@ -57,10 +57,10 @@ public class Main {
                 case 11:
                     jumping_test();
                     break;
-=======
 
 
-    static Scanner scanner = new Scanner(System.in);
+
+  /*  static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
         System.out.println("Mit szeretnél tesztelni?");
         System.out.println("01 - MovePanda");
@@ -109,10 +109,13 @@ public class Main {
             case 11:
                 jumping_test();
                 break;
->>>>>>> sárosi
+
                 default:
                     System.out.println("Érvénytelen input");
                     break;
+            }
+        }
+    }*/
             }
         }
     }
@@ -236,11 +239,11 @@ public class Main {
         fields.add(new Field());
         orangutan.setIamon(fields.get(4));
         fields.get(4).setContain(orangutan);
-        sz1.setSzekrenypar(fields.get(0));
-        sz2.setSzekrenypar(fields.get(3));
-        orangutan.move(fields.get(3));
-        orangutan.move(fields.get(2));
-        if (fields.get(0).getContain()==orangutan)
+        sz1.setSzekrenypar(fields.get(3));
+        sz2.setSzekrenypar(fields.get(4));
+        orangutan.move(fields.get(1));
+       // orangutan.move(fields.get(1));
+        if (orangutan.equals(fields.get(3).getContain()))
         {
             System.out.println("Wardrobe test done!");
         }
@@ -258,20 +261,16 @@ public class Main {
         Orangutan enemy = new Orangutan();
         ArrayList<Field> fields = new ArrayList<>();
         Entry entry = new Entry();
-<<<<<<< HEAD
 
-=======
->>>>>>> sárosi
         fields.add(entry);
         fields.add(new Field());
         fields.add(new Field());
         fields.add(new Field());
         fields.add(new Field());
         Exit exit = new Exit();
-<<<<<<< HEAD
+
         exit.setEntry(entry);
-=======
->>>>>>> sárosi
+
         fields.add(exit);
         control.setP1(player1);
         control.setP2(player2);
@@ -283,7 +282,7 @@ public class Main {
         control.pandas.add(p1);
         control.pandas.add(p2);
         control.pandas.add(p3);
-<<<<<<< HEAD
+
 
         fields.get(0).setContain(p1);
         p1.setIamon(fields.get(0));
@@ -314,7 +313,7 @@ public class Main {
             else{System.out.print('x');}
         }
         System.out.println();
-=======
+
         fields.get(0).setContain(p1);
         p1.setIamon(fields.get(0));
         fields.get(2).setContain(p2);
@@ -332,7 +331,7 @@ public class Main {
         control.move(orangutan,fields.get(5));
         control.move(orangutan,fields.get(1));
 
->>>>>>> sárosi
+
         System.out.println("Orangutan  exit test done!");
     }
 
@@ -370,11 +369,11 @@ public class Main {
     }
 
 
-<<<<<<< HEAD
+
     static public void furnitur_test(){fuss = false;}
-=======
-    static public void furnitur_test(){}
->>>>>>> sárosi
+
+
+
     static public void sitting_test(){}
     static public void scaring_test(){}
     static public void jumping_test(){}

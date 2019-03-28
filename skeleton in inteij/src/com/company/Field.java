@@ -50,9 +50,7 @@ public class Field {
 		logger.depthM();
 	}//Nem csinál semmit
 
-	public void setNei(ArrayList<Field> nei) {
-		this.nei = nei;
-	}
+
 
 	public void addNei(Field f){
 		logger.depthP();

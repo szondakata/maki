@@ -17,8 +17,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/Exit.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="461">
-              <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
+            <state relative-caret-position="308">
+              <caret line="36" column="85" lean-forward="true" selection-start-line="36" selection-start-column="85" selection-end-line="36" selection-end-column="85" />
+              <folding>
+                <element signature="e#1090#1091#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -252,7 +255,7 @@
       <workItem from="1553656879791" duration="7320000" />
       <workItem from="1553668023311" duration="313000" />
       <workItem from="1553680154220" duration="5636000" />
-      <workItem from="1553774936647" duration="725000" />
+      <workItem from="1553774936647" duration="985000" />
     </task>
     <task id="LOCAL-00001" summary="javítva">
       <created>1553698447038</created>
@@ -293,7 +296,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17980000" />
+    <option name="totallyTimeSpent" value="18240000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -523,8 +526,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Exit.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="461">
-          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
+        <state relative-caret-position="308">
+          <caret line="36" column="85" lean-forward="true" selection-start-line="36" selection-start-column="85" selection-end-line="36" selection-end-column="85" />
+          <folding>
+            <element signature="e#1090#1091#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

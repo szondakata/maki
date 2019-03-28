@@ -308,16 +308,165 @@ public class Main {
     }
 
         static public void weaktile_test() {
-            fuss = false;
+
+            Breakable br = new Breakable();
+            Ijedos ijedos = new Ijedos();
+
+            ijedos.setIamon(br);
+            br.setContain(ijedos);
+
+
+            while(ijedos.isAlive()) ijedos.move(br);
+
+
         }
 
 
-        static public void sitting_test () {
+    static public void furnitur_test () {
+        Jatek jatek = new Jatek();
+        Csoki csoki = new Csoki();
+        Fotel fotel = new Fotel();
+
+        Ijedos ijed = new Ijedos();
+        Ugralos ugralos = new Ugralos();
+        Almos almos = new Almos();
+
+        ArrayList<Field> fields = new ArrayList<>();
+        fields.add(jatek);
+        fields.add(csoki);
+        fields.add(fotel);
+        fields.add(new Field());
+        fields.add(new Field());
+        fields.add(new Field());
+
+        fields.get(0).addNei(fields.get(3));
+        fields.get(0).addNei(fields.get(4));
+        fields.get(0).addNei(fields.get(5));
+
+        fields.get(1).addNei(fields.get(3));
+        fields.get(1).addNei(fields.get(4));
+        fields.get(1).addNei(fields.get(5));
+
+        fields.get(2).addNei(fields.get(3));
+        fields.get(2).addNei(fields.get(4));
+        fields.get(2).addNei(fields.get(5));
+
+        ijed.setIamon(fields.get(3));
+        fields.get(3).setContain(ijed);
+        almos.setIamon(fields.get(4));
+        fields.get(4).setContain(almos);
+        ugralos.setIamon(fields.get(5));
+        fields.get(5).setContain(ugralos);
+
+        for (int i =0;i<fields.size();i++) {
+
+            fields.get(i).Update();
         }
-        static public void scaring_test () {
+
+
+    }
+
+
+    static public void sitting_test () {
+
+
+        Fotel fotel = new Fotel();
+
+
+        Almos almos = new Almos();
+
+        ArrayList<Field> fields = new ArrayList<>();
+
+        fields.add(fotel);
+        fields.add(new Field());
+        fields.add(new Field());
+        fields.add(new Field());
+
+        fields.get(0).addNei(fields.get(1));
+        fields.get(0).addNei(fields.get(2));
+        fields.get(0).addNei(fields.get(3));
+
+
+
+
+        almos.setIamon(fields.get(2));
+        fields.get(2).setContain(almos);
+        for(int i =0; i<3;i++) almos.move(fields.get(3));
+
+
+        for (int i =0;i<fields.size();i++) {
+
+            fields.get(i).Update();
         }
-        static public void jumping_test () {
+
+    }
+    static public void scaring_test () {
+
+        Jatek jatek = new Jatek();
+
+
+        Ijedos ijed = new Ijedos();
+        Ugralos ugralos = new Ugralos();
+
+
+        ArrayList<Field> fields = new ArrayList<>();
+        fields.add(jatek);
+        fields.add(new Field());
+        fields.add(new Field());
+        fields.add(new Field());
+
+        fields.get(0).addNei(fields.get(1));
+        fields.get(0).addNei(fields.get(2));
+        fields.get(0).addNei(fields.get(3));
+
+
+
+        ijed.setIamon(fields.get(1));
+        fields.get(1).setContain(ijed);
+
+        ugralos.setIamon(fields.get(2));
+        fields.get(2).setContain(ugralos);
+        ugralos.setHand2(ijed);
+        ijed.setHand1(ugralos);
+
+        for (int i =0;i<fields.size();i++) {
+
+            fields.get(i).Update();
         }
+    }
+    static public void jumping_test () {
+        Csoki csoki = new Csoki();
+
+
+        Ijedos ijed = new Ijedos();
+        Ugralos ugralos = new Ugralos();
+
+
+        ArrayList<Field> fields = new ArrayList<>();
+        fields.add(csoki);
+        fields.add(new Field());
+        fields.add(new Field());
+        fields.add(new Field());
+
+        fields.get(0).addNei(fields.get(1));
+        fields.get(0).addNei(fields.get(2));
+        fields.get(0).addNei(fields.get(3));
+
+
+
+        ijed.setIamon(fields.get(1));
+        fields.get(1).setContain(ijed);
+
+        ugralos.setIamon(fields.get(2));
+        fields.get(2).setContain(ugralos);
+        ugralos.setHand2(ijed);
+        ijed.setHand1(ugralos);
+
+        for (int i =0;i<fields.size();i++) {
+
+            fields.get(i).Update();
+        }
+    }
 
         static  public  void exit ()
         {

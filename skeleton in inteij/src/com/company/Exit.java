@@ -34,7 +34,7 @@ public class Exit extends Field {
 
     public void setContain(Unit contain) {
         logger.depthP();
-	    logger.writeMessage(this.toString()+".setContain("+contain==null ? "Null" : contain.toString()+")");
+	    logger.writeMessage(this.toString()+".setContain("+ (contain==null ? contain.toString() : "Null")+")");
         this.stepped(contain);
         logger.depthM();
     }

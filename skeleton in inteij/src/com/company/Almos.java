@@ -14,6 +14,8 @@ public class Almos extends Panda {
 	}
 
 	public void Action(Fotel f) {//Csak az Álmos panda reagál rá
+		logger.depthP();
+		logger.writeMessage(this.toString()+".Action("+f.toString()+")");
 		if(!isEnergic) { //ha fáradt leül
 
 			if (getHand1() != null) {
@@ -28,11 +30,14 @@ public class Almos extends Panda {
 				}
 			}
 		}
+		logger.depthM();
 	}
 
 	@Override
 	public boolean move(Field f)
 	{
+		logger.depthP();
+		logger.writeMessage(this.toString()+".move("+f.toString()+")");
 		if (isEnergic) {  //ha nem fárasdt lép
 			energy--;     //elkezd fáradni
 			if(energy<1) //ha elfogy az energiája akkor elfárad
@@ -47,11 +52,14 @@ public class Almos extends Panda {
 					this.getHand1().move(temp);
 				}
 				this.setIamon(f);
+				logger.depthM();
 				return true;
 			} else {
+				logger.depthM();
 				return false;
 			}
 		}
+		logger.depthM();
 		return false;
 
 	}

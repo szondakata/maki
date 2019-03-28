@@ -5,6 +5,8 @@ public class Breakable extends Field {
 
 
 	public void stepped(Unit u) {//Ha rálépnek meghívódik Unit u:aki rá lépett
+		logger.depthP();
+		logger.writeMessage(this.toString()+".stepped(+"+u.toString()+")");
 		if (u!= null)
 		{
 			remainLifetime--;
@@ -13,5 +15,6 @@ public class Breakable extends Field {
 				u.die();
 			}
 		}
+		logger.depthM();
 	}
 }

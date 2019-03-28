@@ -1,4 +1,4 @@
-package com.company;
+﻿package com.company;
 
 
 public class Orangutan extends Unit {
@@ -10,6 +10,8 @@ public class Orangutan extends Unit {
 
 
 	public void exit(Field f) {
+		logger.depthP();
+		logger.writeMessage(this.toString()+".exit()");
 		if (getHand2()!= null)
 		{
 			Field temp=getIamon();
@@ -21,15 +23,31 @@ public class Orangutan extends Unit {
 
 			myPlayer.givePoints(6);//6 pont cause whynot
 		}
+		logger.depthM();
 	}
 
 
 	@Override
-	public void action(Csoki cs) {}
+	public void action(Csoki cs) 
+	{
+		logger.depthP();
+		logger.writeMessage(this.toString()+".action("+cs.toString()+")");
+		logger.depthM();
+	}
 
 	@Override
-	public void action(Jatek j) {}
+	public void action(Jatek j) 
+	{
+		logger.depthP();
+		logger.writeMessage(this.toString()+".action("+j.toString()+")");
+		logger.depthM();
+	}
 
 	@Override
-	public void action(Fotel f) {}
+	public void action(Fotel f) 
+	{
+		logger.depthP();
+		logger.writeMessage(this.toString()+".action("+f.toString()+")");
+		logger.depthM();
+	}
 }

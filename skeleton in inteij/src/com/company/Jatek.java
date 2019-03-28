@@ -1,4 +1,4 @@
-package com.company;
+﻿package com.company;
 import java.util.Random;
 
 
@@ -7,7 +7,9 @@ public class Jatek extends Field {
 
 	Random rand = new Random();
 	public void Update() {
-		if (rand.nextBoolean()) return;//Random sípol
+		logger.depthP();
+		logger.writeMessage(this.toString()+".Update()");
+		if (rand.nextBoolean()) {logger.depthM(); return;}//Random sípol
 		for (Field field : getNei()) {//A mező szomszédjaira
 			if (field.getContain()!=null)
 			{
@@ -18,5 +20,6 @@ public class Jatek extends Field {
 		{
 			getContain().action(this);//Sípol
 		}
+		logger.depthM();
 	}
 }

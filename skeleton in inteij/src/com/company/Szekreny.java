@@ -11,21 +11,31 @@ public class Szekreny extends Field {
 
 	private Field szekrenypar;//A szekrény párjának egyik szomszédos mezője
 	@Override
-	public void stepped(Unit unit) {
+	public void stepped(Orangutan orangutan) {
 		logger.depthP();
-		logger.writeMessage(this.toString()+".stepped("+unit.toString()+")");
-		if(unit != null)
+		logger.writeMessage(this.toString()+".stepped("+orangutan.toString()+")");
+		if(orangutan != null)
 		{
 			if(szekrenypar.getContain() == null)//Ha nem áll senki a szekrényen
 			{
-				unit.move(szekrenypar);//Belép a szekrénybe
+				orangutan.move(szekrenypar);//Belép a szekrénybe
 			}
 		}
 		logger.depthM();
 	}
 
-
+	@Override
 	public void stepped(Panda p) {
+		logger.depthP();
+		logger.writeMessage(this.toString()+".stepped("+p.toString()+")");
+		if(p != null)
+		{
+			if(szekrenypar.getContain() == null)//Ha nem áll senki a szekrényen
+			{
+				p.move(szekrenypar);//Belép a szekrénybe
+			}
+		}
+		logger.depthM();
 	}
 
 }

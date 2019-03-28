@@ -62,7 +62,7 @@ public Field getIamon() {
 		logger.depthM();
 	} //Üres osztály
 	
-	public void exit() {
+	public void exit(Field f) {
 		logger.depthP();
 		logger.writeMessage(this.toString()+".exit()");
 		logger.depthM();

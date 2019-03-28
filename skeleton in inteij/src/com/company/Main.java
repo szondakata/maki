@@ -205,17 +205,14 @@ public class Main {
         Orangutan orangutan = new Orangutan();
         Orangutan enemy = new Orangutan();
         ArrayList<Field> fields = new ArrayList<>();
-        Entry entry = new Entry();
-
+        Entry entry = Entry.getInstance();
+        orangutan.setMyPlayer(player1);
         fields.add(entry);
         fields.add(new Field());
         fields.add(new Field());
         fields.add(new Field());
         fields.add(new Field());
         Exit exit = new Exit();
-
-        exit.setEntry(entry);
-
         fields.add(exit);
         control.setP1(player1);
         control.setP2(player2);
@@ -227,35 +224,6 @@ public class Main {
         control.pandas.add(p1);
         control.pandas.add(p2);
         control.pandas.add(p3);
-        fields.get(0).setContain(p1);
-        p1.setIamon(fields.get(0));
-        fields.get(2).setContain(p2);
-        p2.setIamon(fields.get(2));
-        fields.get(3).setContain(p3);
-        p3.setIamon(fields.get(3));
-        fields.get(4).setContain(orangutan);
-        orangutan.setIamon(fields.get(4));
-
-        p2.setHand1(p3);
-        p3.setHand1(orangutan);
-        orangutan.setHand2(p3);
-        p3.setHand2(p2);
-        for (Field f:fields) {
-            if (f.getContain() == null){System.out.print('o');}
-            else{System.out.print('x');}
-        }
-        System.out.println();
-        control.move(orangutan,fields.get(5));
-        for (Field f:fields) {
-            if (f.getContain() == null){System.out.print('o');}
-            else{System.out.print('x');}
-        }
-        System.out.println();
-        for (Field f:fields) {
-            if (f.getContain() == null){System.out.print('o');}
-            else{System.out.print('x');}
-        }
-        System.out.println();
         fields.get(0).setContain(p1);
         p1.setIamon(fields.get(0));
         fields.get(2).setContain(p2);
@@ -307,63 +275,32 @@ public class Main {
         System.out.println("Panda dies test done!");
     }
 
-        static public void weaktile_test() {
-
-            Breakable br = new Breakable();
-            Ijedos ijedos = new Ijedos();
-
-            ijedos.setIamon(br);
-            br.setContain(ijedos);
-
-
-            while(ijedos.isAlive()) ijedos.move(br);
-
-
-        }
-
-
-    static public void furnitur_test () {
-        Jatek jatek = new Jatek();
-        Csoki csoki = new Csoki();
-        Fotel fotel = new Fotel();
-
-        Ijedos ijed = new Ijedos();
-        Ugralos ugralos = new Ugralos();
-        Almos almos = new Almos();
-
+    static public void weaktile_test() {
         ArrayList<Field> fields = new ArrayList<>();
-        fields.add(jatek);
-        fields.add(csoki);
-        fields.add(fotel);
+        Orangutan orangutan = new Orangutan();
+        Orangutan enemy = new Orangutan();
+        Control control = new Control();
+        Player player1 = new Player();
+        Player player2 = new Player();
+        control.setP1(player1);
+        control.setP2(player2);
+        control.orangutans.add(orangutan);
+        control.orangutans.add(enemy);
+        fields.add(new Field());
+        Breakable breakable = new Breakable();
+        breakable.setRemainLifetime(1);
+        fields.add(breakable);
         fields.add(new Field());
         fields.add(new Field());
-        fields.add(new Field());
-
-        fields.get(0).addNei(fields.get(3));
-        fields.get(0).addNei(fields.get(4));
-        fields.get(0).addNei(fields.get(5));
-
-        fields.get(1).addNei(fields.get(3));
-        fields.get(1).addNei(fields.get(4));
-        fields.get(1).addNei(fields.get(5));
-
-        fields.get(2).addNei(fields.get(3));
-        fields.get(2).addNei(fields.get(4));
-        fields.get(2).addNei(fields.get(5));
-
-        ijed.setIamon(fields.get(3));
-        fields.get(3).setContain(ijed);
-        almos.setIamon(fields.get(4));
-        fields.get(4).setContain(almos);
-        ugralos.setIamon(fields.get(5));
-        fields.get(5).setContain(ugralos);
-
-        for (int i =0;i<fields.size();i++) {
-
-            fields.get(i).Update();
-        }
-
-
+        Ijedos p1 = new Ijedos();
+        control.pandas.add(p1);
+        p1.setIamon(fields.get(0));
+        fields.get(0).setContain(p1);
+        p1.move(fields.get(1));
+        orangutan.setIamon(fields.get(3));
+        fields.get(3).setContain(orangutan);
+        control.move(orangutan,fields.get(2));
+        System.out.println("Weak Tile test done!");
     }
 
 
@@ -398,7 +335,7 @@ public class Main {
 
             fields.get(i).Update();
         }
-
+        System.out.println("Sitting test done!");
     }
     static public void scaring_test () {
 
@@ -433,6 +370,7 @@ public class Main {
 
             fields.get(i).Update();
         }
+        System.out.println("Scaring test done!");
     }
     static public void jumping_test () {
         Csoki csoki = new Csoki();
@@ -466,6 +404,7 @@ public class Main {
 
             fields.get(i).Update();
         }
+        System.out.println("Jumping test done!");
     }
 
         static  public  void exit ()

@@ -15,13 +15,12 @@ public class Orangutan extends Unit {
 		if (getHand2()!= null)
 		{
 			Field temp=getIamon();
-			setIamon(null);
-			move(f);
 			getHand2().exit(temp);
-			f.getContain().die();
-			move(f);
+			Entry entry = Entry.getInstance();
+			entry.getContain().die();
+			move(entry);
 
-			myPlayer.givePoints(6);//6 pont cause whynot
+			myPlayer.givePoints(1);//6 pont cause whynot
 		}
 		logger.depthM();
 	}

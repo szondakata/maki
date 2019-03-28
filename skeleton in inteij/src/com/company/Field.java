@@ -45,15 +45,9 @@ public class Field {
 		logger.depthM();
 	}//Nem csinál semmit
 
-	public void stepped(Orangutan u) {
+	public void stepped(Unit u) {
 		logger.depthP();
 		logger.writeMessage(this.toString()+".Stepped("+(u==null ? "Null":u.toString())+")");
-		logger.depthM();
-	}//Nem csinál semmit
-
-	public void stepped(Panda p) {
-		logger.depthP();
-		logger.writeMessage(this.toString()+".Stepped("+(p==null ? "Null":p.toString())+")");
 		logger.depthM();
 	}//Nem csinál semmit
 

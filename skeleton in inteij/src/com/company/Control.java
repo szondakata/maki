@@ -151,7 +151,7 @@ public class Control {
     }
 
     public Player getP2() {
-		ogger.depthP();
+		logger.depthP();
         logger.writeMessage(this.toString()+".getP2()");
         logger.depthM();
         return p2;

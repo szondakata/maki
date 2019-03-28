@@ -50,6 +50,8 @@ public class Field {
 		logger.depthM();
 	}//Nem csinál semmit
 
+
+
 	public void addNei(Field f){
 		logger.depthP();
 		logger.writeMessage(this.toString()+".addNei("+f.toString()+")");

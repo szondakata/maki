@@ -9,6 +9,7 @@ public class Exit extends Field {
 
 
     ArrayList<Unit> talon=new ArrayList<>();
+    @Override
 	public void stepped(Orangutan o) {
 		logger.depthP();
         logger.writeMessage(this.toString()+".stepped("+o.toString()+")");
@@ -19,7 +20,7 @@ public class Exit extends Field {
         }
 		logger.depthM();
 	}
-
+    @Override
     public void stepped(Panda p) {
 		logger.depthP();
         logger.writeMessage(this.toString()+".stepped("+(p==null ? "Null" : p.toString())+")");
@@ -34,7 +35,7 @@ public class Exit extends Field {
 
     public void setContain(Unit contain) {
         logger.depthP();
-	    logger.writeMessage(this.toString()+".setContain("+contain==null ? "Null" : contain.toString()+")");
+	    logger.writeMessage(this.toString()+".setContain("+(contain==null ? "Null" : contain.toString())+")");
         this.stepped(contain);
         logger.depthM();
     }

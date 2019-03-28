@@ -18,6 +18,7 @@ public class Control {
 	{
 		logger=new Logger();
 	}
+
     public void move(Orangutan myO, Field ToF) {//Eltérő
 		logger.depthP();
         logger.writeMessage(this.toString()+".move("+myO.toString()+", "+ToF.toString()+")");
@@ -67,16 +68,16 @@ public class Control {
 
 		logger.depthP();
         logger.writeMessage(this.toString()+".End()");
-        int pandaCount=0;
+        pandaCount=0;
 
         for (Panda panda:pandas) {
-			
+
             if(panda.isAlive)
                 pandaCount++;
 
         }
 
-        if (orangutans.get(0).isAlive && orangutans.get(1).isAlive && pandas.size() < 1) {  //ha egy orángután meghal vagy elfogynak a pandák vége a játéknak
+        if (orangutans.get(0).isAlive && orangutans.get(1).isAlive && pandaCount < 1) {  //ha egy orángután meghal vagy elfogynak a pandák vége a játéknak
             System.out.println("Jatekos 1 pontszam: " + p1.getPoints() + "\nJatekos 2 pontszam: " + p2.getPoints());
 			logger.depthM();
             return true;
@@ -151,7 +152,7 @@ public class Control {
     }
 
     public Player getP2() {
-		ogger.depthP();
+		logger.depthP();
         logger.writeMessage(this.toString()+".getP2()");
         logger.depthM();
         return p2;

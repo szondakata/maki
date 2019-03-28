@@ -13,7 +13,7 @@ public class Almos extends Panda {
 		energy = rand.nextInt(4);
 	}
 
-	public void Action(Fotel f) {//Csak az Álmos panda reagál rá
+	public void action(Fotel f) {//Csak az Álmos panda reagál rá
 		logger.depthP();
 		logger.writeMessage(this.toString()+".Action("+f.toString()+")");
 		if(!isEnergic) { //ha fáradt leül

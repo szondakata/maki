@@ -1,67 +1,45 @@
-﻿package com.company;
+package com.company;
 import java.util.ArrayList;
 
 public class Field {
 	private Unit contain;//A mezőn lévő unit
-	protected Logger logger; //Logger
 	private ArrayList<Field> nei;//A mező szomszédai
 
 
-	public Field()
-	{
-		logger=new Logger();
-	}
 
 	public Unit getContain() {
-		logger.depthP();
-		logger.writeMessage(this.toString()+".getContain()");
-		logger.depthM();
 		return contain;
 	}
 	public void setContain(Unit contain) {
-		logger.depthP();
-		logger.writeMessage(this.toString()+".setContain("+(contain==null ? "Null" : contain.toString() )+")");
 		this.stepped(contain);
 		this.contain = contain;
-		logger.depthM();
 	}
 
 	public void setNei(ArrayList<Field> nei) {
 		this.nei = nei;
 	}
 	public ArrayList<Field> getNei() {
-		logger.depthP();
-		logger.writeMessage(this.toString()+".getNei()");
-		logger.depthM();
 		return nei;
 	}
 
-
+<<<<<<< HEAD
 
 	public void Update() {
-		logger.depthP();
-		logger.writeMessage(this.toString()+".Update()");
-		logger.depthM();
 	}//Nem csinál semmit
-	public void stepped(Unit u) {
-		logger.depthP();
-		logger.writeMessage(this.toString()+".Stepped()");
-		logger.depthM();
-	}//Nem csinál semmit
-
+	public void stepped(Unit u) {}//Nem csinál semmit
+=======
 	public void setNei(ArrayList<Field> nei) {
 		this.nei = nei;
 	}
-
+<<<<<<< HEAD
+<<<<<<< HEAD
 	public void addNei(Field f){
-		logger.depthP();
-		logger.writeMessage(this.toString()+".addNei("+f.toString()+")");
-		
 		nei.add(f);
-		if(!f.getNei().contains(this)) f.addNei(this); //így jó
-		//f.addNei(this); EZ ITT KIBASZOTTUL VÉGTELEN (lsd.:rekúrzió)
-		logger.depthM();
-		
+		f.addNei(this);
 	}
-
+>>>>>>> sárosi
+=======
+>>>>>>> parent of 68ac3cb... exit kills
+=======
+>>>>>>> parent of 68ac3cb... exit kills
 }

@@ -3,6 +3,7 @@ package com.company;
 
 public abstract class Unit implements Action {
 
+	public String ID;
 	boolean isAlive = true;
 	protected Logger logger;
 	private Field iamon;//Melyik mezőn vagyok

@@ -10,7 +10,9 @@ public class Almos extends Panda {
 	Random rand = new Random();
 
 	public Almos() {
-		energy = rand.nextInt(4);
+
+		energy=4;
+		//energy = rand.nextInt(4);
 	}
 
 	public void action(Fotel f) {//Csak az Álmos panda reagál rá
@@ -23,7 +25,8 @@ public class Almos extends Panda {
 				move(f);
 				if (energy == 0) {
 					isEnergic = !isEnergic;
-					energy = rand.nextInt(4);
+					//energy = rand.nextInt(4);
+					energy=4;
 					energy++; //mivel leült ezért töltődik az energiája
 					if(energy==5) //ha kipihenti magát akkor újra energikus lesz
 						isEnergic =true;

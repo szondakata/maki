@@ -5,17 +5,17 @@ public class Panda extends Unit {
 
 	//Orángután hívja meg a lánc kialakításához
 	//Orangutan orangutan: Hívó orángután
-	public void grab(Orangutan orangutan) {
+	public void grab(Unit unit) {
 		logger.depthP();
-		logger.writeMessage(this.toString()+".grab("+orangutan.toString()+")");
-		Unit p2 = orangutan.getHand2();
+		logger.writeMessage(this.toString()+".grab("+unit.toString()+")");
+		Unit p2 = unit.getHand2();
 		setHand2(p2);
 		if (p2 != null)
 		{
 			p2.setHand1(this);
 		}
-		orangutan.setHand2(this);
-		this.setHand1(orangutan);
+		unit.setHand2(this);
+		this.setHand1(unit);
 		logger.depthM();
 	}
 	

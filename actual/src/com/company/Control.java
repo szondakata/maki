@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Control {
-
+    public boolean isRandom=true;
     ArrayList<Orangutan> orangutans = new ArrayList<>();
     ArrayList<Panda> pandas = new ArrayList<>();
     ArrayList<Field> items = new ArrayList<>();
@@ -39,9 +39,12 @@ public class Control {
         if (!End())
 		{
             for (Panda panda : pandas) { //minden panda egy a vele szomszédos mezőre lép vagy ott marad
-                Random rand = new Random();
-                panda.move(panda.getIamon().getNei().get(rand.nextInt(panda.getIamon().getNei().size())));
-
+                if(isRandom) {
+                    Random rand = new Random();
+                    panda.move(panda.getIamon().getNei().get(rand.nextInt(panda.getIamon().getNei().size())));
+                }else{
+                    panda.move(panda.getIamon().getNei().get(2));
+                }
             }
         }
 		logger.depthM();

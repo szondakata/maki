@@ -1,7 +1,9 @@
 package com.company;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+
 
 public class Main {
     static boolean fuss = true;
@@ -9,6 +11,8 @@ public class Main {
     static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
+        utasitasok u = new utasitasok();
+
         while (fuss) {
             System.out.println("Mit szeretnél tesztelni?");
             System.out.println("01 - MovePanda");
@@ -23,6 +27,7 @@ public class Main {
             System.out.println("10 - Scaring");
             System.out.println("11 - Jumping");
             System.out.println("12 - Exit");
+            System.out.println("13 - CMD");
 
             switch (scanner.nextInt()) {
                 case 1:
@@ -61,9 +66,100 @@ public class Main {
                 case 12:
                     exit();
                     break;
-                    default:
-                        System.out.println("Érvénytelen bemenet");
-                        break;
+                case 13:
+
+                    try {
+
+                        BufferedReader reader =
+                                new BufferedReader(new InputStreamReader(System.in));
+
+                        // Reading data using readLine
+                        String name;
+
+
+
+                        String[] arguments;
+                        while ((name = reader.readLine()) != null) {
+                            arguments = name.split("-");
+                            for (int i = 0; arguments.length > i; i++) {
+                                arguments[i] = arguments[i].trim();
+                            }
+                            System.out.println(arguments[0]);
+                                switch (arguments[0]) {
+                                    case "crtunit":
+                                        u.crtunit(arguments);
+
+                                        break;
+                                    case "crttile":
+                                        u.crttile(arguments);
+                                        break;
+                                    case "linka":
+                                        u.linka(arguments);
+                                        break;
+                                    case "linkt":
+                                        u.linkt(arguments);
+                                        break;
+                                    case "move":
+                                        u.move(arguments);
+                                        break;
+                                    case "destroy":
+                                        u.destroy(arguments);
+                                        break;
+                                    case "kill":
+                                        u.kill(arguments);
+                                        break;
+                                    case "setweariness":
+                                        u.setweariness(arguments);
+                                        break;
+                                    case "save":
+                                        u.save(arguments);
+                                        break;
+                                    case "load":
+                                        u.load(arguments);
+                                        break;
+                                    case "rand":
+                                        u.rand(arguments);
+                                        break;
+                                    case "action":
+                                        u.action(arguments);
+                                        break;
+                                    case "fastforward":
+                                        u.fastforward(arguments);
+                                        break;
+                                    case "listpandas":
+                                        u.listpandas();
+                                        break;
+                                    case "listorangutans":
+                                        u.listorangutans();
+                                        break;
+                                    case "listtiles":
+                                        u.listtiles();
+                                        break;
+                                    case "displaypoints":
+                                        u.displaypoints();
+                                        break;
+                                    case "listnei":
+                                        u.listnei(arguments);
+                                        break;
+                                    case "displaystatus":
+                                        u.displaystatus(arguments);
+                                        break;
+                                    case "test":
+                                        u.test(arguments);
+                                        break;
+                                    default:
+                                        System.out.println("Doesnot works");
+                                }
+
+                        }
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                default:
+                    System.out.println("Érvénytelen bemenet");
+                    break;
             }
         }
     }
@@ -237,8 +333,8 @@ public class Main {
         p3.setHand1(orangutan);
         orangutan.setHand2(p3);
         p3.setHand2(p2);
-        control.move(orangutan,fields.get(5));
-        control.move(orangutan,fields.get(1));
+        control.move(orangutan, fields.get(5));
+        control.move(orangutan, fields.get(1));
         System.out.println("Orangutan  exit test done!");
     }
 
@@ -299,12 +395,12 @@ public class Main {
         p1.move(fields.get(1));
         orangutan.setIamon(fields.get(3));
         fields.get(3).setContain(orangutan);
-        control.move(orangutan,fields.get(2));
+        control.move(orangutan, fields.get(2));
         System.out.println("Weak Tile test done!");
     }
 
 
-    static public void sitting_test () {
+    static public void sitting_test() {
 
 
         Fotel fotel = new Fotel();
@@ -324,20 +420,19 @@ public class Main {
         fields.get(0).addNei(fields.get(3));
 
 
-
-
         almos.setIamon(fields.get(2));
         fields.get(2).setContain(almos);
-        for(int i =0; i<3;i++) almos.move(fields.get(3));
+        for (int i = 0; i < 3; i++) almos.move(fields.get(3));
 
 
-        for (int i =0;i<fields.size();i++) {
+        for (int i = 0; i < fields.size(); i++) {
 
             fields.get(i).Update();
         }
         System.out.println("Sitting test done!");
     }
-    static public void scaring_test () {
+
+    static public void scaring_test() {
 
         Jatek jatek = new Jatek();
 
@@ -357,7 +452,6 @@ public class Main {
         fields.get(0).addNei(fields.get(3));
 
 
-
         ijed.setIamon(fields.get(1));
         fields.get(1).setContain(ijed);
 
@@ -366,13 +460,14 @@ public class Main {
         ugralos.setHand2(ijed);
         ijed.setHand1(ugralos);
 
-        for (int i =0;i<fields.size();i++) {
+        for (int i = 0; i < fields.size(); i++) {
 
             fields.get(i).Update();
         }
         System.out.println("Scaring test done!");
     }
-    static public void jumping_test () {
+
+    static public void jumping_test() {
         Csoki csoki = new Csoki();
 
 
@@ -391,7 +486,6 @@ public class Main {
         fields.get(0).addNei(fields.get(3));
 
 
-
         ijed.setIamon(fields.get(1));
         fields.get(1).setContain(ijed);
 
@@ -400,17 +494,17 @@ public class Main {
         ugralos.setHand2(ijed);
         ijed.setHand1(ugralos);
 
-        for (int i =0;i<fields.size();i++) {
+        for (int i = 0; i < fields.size(); i++) {
 
             fields.get(i).Update();
         }
         System.out.println("Jumping test done!");
     }
 
-        static  public  void exit ()
-        {
-            fuss=false;
-        }
-
+    static public void exit() {
+        fuss = false;
     }
+
+
+}
 

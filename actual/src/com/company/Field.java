@@ -1,4 +1,7 @@
 package com.company;
+import com.company.Logger;
+import com.company.Unit;
+
 import java.util.ArrayList;
 
 public class Field {
@@ -62,3 +65,4 @@ public class Field {
 	}
 
 }
+

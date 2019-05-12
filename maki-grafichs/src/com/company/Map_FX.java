@@ -1,7 +1,8 @@
-package sample;
+package com.company;
 
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 
 import java.util.ArrayList;
@@ -9,11 +10,11 @@ import java.util.Random;
 
 public class Map_FX
 {
+    koor[] start;
+
     public koor[] getStart() {
         return start;
     }
-
-    koor[] start;
 
 
     /*public double terulet(koor a1, koor a2,koor a3)
@@ -29,6 +30,8 @@ public class Map_FX
             start[i].x = rand.nextInt(500);
             start[i].y = rand.nextInt(500);
         }
+        panda = new Circle(0,0,5);
+        panda.setVisible(false);
     }
 
     public Map_FX(koor[] pontoka) {
@@ -65,7 +68,7 @@ public class Map_FX
                     }
                 }
                 I.setRGB(x, y, n);
-                System.out.println(n);
+                //System.out.println(n);
                 szele[n][szeles[n]].x=x;
                 szele[n][szeles[n]].y=y;
                 szeles[n]++;
@@ -75,7 +78,7 @@ public class Map_FX
         for (int a=0;a<cells;a++)
         {
             for (int b=0;b<(size_x*size_y/cells*5);b++) {
-                System.out.println("X: "+szele[a][b].x+";Y: "+szele[a][b].y);
+                //System.out.println("X: "+szele[a][b].x+";Y: "+szele[a][b].y);
                 if (szele[a][b].x != 0 && szele[a][b].y != 0 && szele[a][b].x != size_x-1 && szele[a][b].y != size_y-1 && szele[a][b].x!=-1&&szele[a][b].y!=-1) {
 
                     int ax = I.getRGB(szele[a][b].x, szele[a][b].y);
@@ -86,6 +89,9 @@ public class Map_FX
                     if (ax==fent&&ax==lent&&ax==jobbra&&ax==balra) {
                         szele[a][b].x = (-1);
                         szele[a][b].y = (-1);
+                    }
+                    else{
+
                     }
                 }
             }
@@ -114,8 +120,38 @@ public class Map_FX
         Polygon perm;
         ArrayList<Double> kord = new ArrayList<>();
         ArrayList<ArrayList<koor>> halmaz =generate(size_x,size_y,cells);
+        int start_id;
+        start_id = 0;
+
+        boolean[][] nei = new boolean[cells][cells];
+
+        for (int x1=0;x1<cells;x1++)
+        {
+            for (int y1=0;y1<cells;y1++)
+            {
+                ArrayList<koor> yx= halmaz.get(0);
+
+                for (int x2=0;x1<cells;x1++)
+                {
+                    for (int y2=0;y1<cells;y1++)
+                    {
+                        ArrayList<koor> yy= halmaz.get(0);
+                        if(distance())
+
+                    }
+                }
+            }
+        }
+
+
+
+
         for (ArrayList<koor> list:halmaz) {
             int i=1;
+
+
+
+
             Color csoportszin = Color.color(Math.random(), Math.random(), Math.random());
             /*for (int x = 0 ; x< list.size();x++)
             {
@@ -142,6 +178,13 @@ public class Map_FX
                 pontok.getChildren().add(pont);
             }
                 */
+            int avg_x=0,avg_y=0,count=0;
+            for (koor kordinata:list) {
+                avg_x+=kordinata.x;
+                avg_y+=kordinata.y;
+                count++;
+            }
+
 
             koor akt = list.get(0);
             while (list.size()!=0)
@@ -151,15 +194,23 @@ public class Map_FX
                 kord.add(akt.y*1.0);
                 list.remove(akt);
             }
-
+            start[start_id].x = avg_x/count;
+            start[start_id].y = avg_y/count;
             perm = new Polygon();
+            perm.setId(String.valueOf(start_id));
             perm.getPoints().addAll(kord);
             perm.setFill(csoportszin);
-            perm.setOnMouseClicked(mouseEvent -> System.out.println("Nyomtad: "+ mouseEvent.getTarget().toString()));
+            int finalStart_id = start_id;
+            perm.setOnMouseClicked(mouseEvent -> {
+                moveto(finalStart_id);
+            });
             kord.clear();
             pane.getChildren().add(perm);
             //pane.getChildren().add(pontok);
+            start_id++;
         }
+        pane.getChildren().add(panda);
+
         return  pane;
     }
 
@@ -171,7 +222,17 @@ public class Map_FX
         return d;
     }
 
+    Circle panda;
 
+    public void moveto(int id)
+    {
+        System.out.println("didit: "+id);
+        panda.setVisible(true);
+        panda.setRadius(30);
+        panda.setFill(Color.BEIGE);
+        panda.setCenterX(start[id].x);
+        panda.setCenterY(start[id].y);
+    }
 
     public koor mintav(koor b, ArrayList<koor> list)
     {

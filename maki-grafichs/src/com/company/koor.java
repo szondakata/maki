@@ -1,4 +1,4 @@
-package sample;
+package com.company;
 
 
 import javafx.scene.shape.Polygon;

@@ -32,6 +32,12 @@ public class Controller {
     boolean[][] nei;
     koor[] start;
 
+    public void setOrangutan(ArrayList<Ornagutan_FX> orangutan) {
+        this.orangutan = orangutan;
+    }
+
+    ArrayList<Ornagutan_FX> orangutan;
+
     public void setUtasitasok(com.company.utasitasok utasitasok) {
         this.utasitasok = utasitasok;
     }
@@ -54,23 +60,34 @@ public class Controller {
         instance = this;
     }
     boolean egyes=true;
+    int hol;
     public void mouse_click(int mit)
     {
-        System.out.println("didit: "+String.valueOf(mit));
-        egyes= !egyes;
-        label.setText(egyes?"Első játékos jön!":"Második játékos jön!");
-        utasitasok.control.pandas.get(0);
-        utasitasok.move(new String[]{"","panda1",String.valueOf(mit)});
-        update_pandas();
+        hol = Integer.parseInt(utasitasok.control.orangutans.get(0).getIamon().ID);
+        if(nei[hol][mit]) {
+            System.out.println("didit: " + String.valueOf(mit));
+            egyes = !egyes;
+            label.setText(egyes ? "Első játékos jön!" : "Második játékos jön!");
+            utasitasok.move(new String[]{"", "player1", String.valueOf(mit)});
+            update_pandas();
+            update_orangutans();
+        }
+        else{
+            //valami alert hogy nem szomszédosat klikkeltél
+        }
+    }
+
+    private  void update_orangutans()
+    {
+        orangutan.get(0).place(start[Integer.parseInt(utasitasok.control.orangutans.get(0).getIamon().ID)]);
+        //orangutan.get(1).place(start[Integer.parseInt(utasitasok.control.orangutans.get(1).getIamon().ID)]);
     }
 
     private void update_pandas()
     {
-        int i=0;
         for (Panda p:utasitasok.control.pandas) {
             StringBuilder sb = new StringBuilder(p.ID);
             sb.delete(0,5);
-            System.out.println(sb.toString()+"   "+p.getIamon().ID);
             pandas.get(Integer.parseInt(sb.toString())).place(start[Integer.parseInt(p.getIamon().ID)]);
         }
     }

@@ -13,7 +13,7 @@ public class Breakable extends Field {
 	@Override
 	public void stepped(Unit u) {//Ha rálépnek meghívódik Unit u:aki rá lépett
 		logger.depthP();
-		logger.writeMessage(this.toString()+".stepped(+"+u.toString()+")");
+		logger.writeMessage(this.toString()+".stepped(+"+(u==null ? "null" : u.toString()) +"  ");
 		if (u!= null)
 		{
 			remainLifetime--;

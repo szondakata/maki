@@ -89,10 +89,12 @@ public class utasitasok {
         } else {
             unit.ID = args[3];
             Field needed = null;
+            Field fake = new Field();
             for (Field field : control.items) {
                 if (field.ID.equals(args[2]))
                     needed = field;
             }
+            if (args[2].equals("fake")) {needed = fake;}
             if (needed == null) {
                 System.out.println("Megadott mező nem létezik!");
                 return;

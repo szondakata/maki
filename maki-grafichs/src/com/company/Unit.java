@@ -92,21 +92,21 @@ public Field getIamon() {
 		logger.writeMessage(this.toString()+".move("+f.toString()+")");
 		if (f.getContain()==null)//Léphetek-e oda?
 		{
+			boolean flag;
 			Field temp = this.getIamon();
-			f.setContain(this);
-
-			if(!temp.equals(iamon)) temp.setContain(null);
-			if (this.getHand1() != null)
+			f.setContain(this);//Teleportnál stepp meghívása ami átállítja az IAMONT
+			flag = temp == this.getIamon();//ha nem teleportált
+			temp.setContain(null);
+			if (this.getHand2() != null)
 			{
-				this.getHand1().move(temp);
+				this.getHand2().move(temp);
 			}
-			this.setIamon(f);
 			logger.depthM();
+			if (flag) {this.setIamon(f);}
 
 			return true;
 		}
-		else{logger.depthM();
-			return  false;}
+		else{logger.depthM();return  false;}
 	}
 	
 

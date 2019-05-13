@@ -24,8 +24,8 @@ public class Field {
 		logger.depthP();
 		logger.writeMessage(this.toString()+".setContain("+(contain==null ? "Null" : contain.toString() )+")");
 
-		this.stepped(contain);
 		this.contain = contain;
+		this.stepped(contain);
 		logger.depthM();
 	}
 

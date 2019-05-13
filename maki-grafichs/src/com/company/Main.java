@@ -71,22 +71,19 @@ public class Main extends Application {
         utasitasok utasitasok = new utasitasok();
         Controller.getInstance().setUtasitasok(utasitasok);
 
-        for (int i=0;i<mezok;i++)
+        for (int i=9;i<mezok;i++)
         {
-            if (i!=randompos[6]&&i!=randompos[7]) {
-                utasitasok.crttile(new String[]{"","tile", String.valueOf(i)});
-            }
-            else
-            {
-                utasitasok.crttile(new String[]{"","breakable", String.valueOf(i)});
-            }
+                utasitasok.crttile(new String[]{"","tile", String.valueOf(randompos[i])});
         }
 
         //2 törékeny
-        start[randompos[6]].ki.setStroke(Color.BLACK);
-        start[randompos[6]].ki.setStrokeWidth(5);
-        start[randompos[7]].ki.setStroke(Color.BLACK);
-        start[randompos[7]].ki.setStrokeWidth(5);
+        start[randompos[0]].ki.setStroke(Color.BLACK);
+        start[randompos[0]].ki.setStrokeWidth(5);
+        start[randompos[1]].ki.setStroke(Color.BLACK);
+        start[randompos[1]].ki.setStrokeWidth(5);
+        utasitasok.crttile(new String[]{"","breakable", String.valueOf(randompos[0])});
+        utasitasok.crttile(new String[]{"","breakable", String.valueOf(randompos[1])});
+
 
         Ornagutan_FX player1 = new Ornagutan_FX(true);
         Ornagutan_FX player2 = new Ornagutan_FX(false);
@@ -95,95 +92,105 @@ public class Main extends Application {
 
         //6 panda
         ArrayList<Panda_FX> pandas=new ArrayList<>();
-        for(int i =0; i<6;i++)
+        for(int i =9; i<15;i++)
         {
             int r_type = random.nextInt(3);
             pandas.add(new Panda_FX(r_type));
-            pandas.get(i).place(start[randompos[i]]);
-            items.getChildren().add(pandas.get(i).animal);
+            pandas.get(i-9).place(start[randompos[i]]);
+            items.getChildren().add(pandas.get(i-9).animal);
 
             switch (r_type)
             {
                 case 0:
-                    utasitasok.crtunit(new String[]{"","panda", String.valueOf(randompos[i]),"panda"+String.valueOf(i)});
+                    utasitasok.crtunit(new String[]{"","panda", String.valueOf(randompos[i]),"panda"+String.valueOf(i-9)});
                     break;
                 case 1:
-                    utasitasok.crtunit(new String[]{"","ijedos", String.valueOf(randompos[i]),"panda"+String.valueOf(i)});
+                    utasitasok.crtunit(new String[]{"","ijedos", String.valueOf(randompos[i]),"panda"+String.valueOf(i-9)});
                     break;
                 case 2:
-                    utasitasok.crtunit(new String[]{"","ugralos", String.valueOf(randompos[i]),"panda"+String.valueOf(i)});
+                    utasitasok.crtunit(new String[]{"","ugralos", String.valueOf(randompos[i]),"panda"+String.valueOf(i-9)});
                     break;
                 case 3:
-                    utasitasok.crtunit(new String[]{"","almos", String.valueOf(randompos[i]),"panda"+String.valueOf(i)});
+                    utasitasok.crtunit(new String[]{"","almos", String.valueOf(randompos[i]),"panda"+String.valueOf(i-9)});
                     break;
                 default:
-                    utasitasok.crtunit(new String[]{"","panda", String.valueOf(randompos[i]),"panda"+String.valueOf(i)});
+                    utasitasok.crtunit(new String[]{"","panda", String.valueOf(randompos[i]),"panda"+String.valueOf(i-9)});
             }
         }
         //1 csoki
         Rectangle csoki = new Rectangle(30,30,Color.BROWN);
-        csoki.setX(start[randompos[8]].x-15);
-        csoki.setY(start[randompos[8]].y-15);
+        csoki.setX(start[randompos[2]].x-15);
+        csoki.setY(start[randompos[2]].y-15);
         items.getChildren().add(csoki);
-        utasitasok.crttile(new String[]{"","vendingm", String.valueOf(8)});
+        utasitasok.crttile(new String[]{"","vendingm", String.valueOf(randompos[2])});
 
         //1 fotel
         Rectangle fotel = new Rectangle(30,30,Color.WHITE);
-        fotel.setX(start[randompos[9]].x-15);
-        fotel.setY(start[randompos[9]].y-15);
+        fotel.setX(start[randompos[3]].x-15);
+        fotel.setY(start[randompos[3]].y-15);
         items.getChildren().add(fotel);
-        utasitasok.crttile(new String[]{"","sofa", String.valueOf(9)});
+        utasitasok.crttile(new String[]{"","sofa", String.valueOf(randompos[3])});
 
         //1 játék
         Rectangle jatek = new Rectangle(30,30,Color.YELLOW);
-        jatek.setX(start[randompos[10]].x-15);
-        jatek.setY(start[randompos[10]].y-15);
+        jatek.setX(start[randompos[4]].x-15);
+        jatek.setY(start[randompos[4]].y-15);
         items.getChildren().add(jatek);
-        utasitasok.crttile(new String[]{"","gamem", String.valueOf(10)});
+        utasitasok.crttile(new String[]{"","gamem", String.valueOf(randompos[4])});
 
         //2 szekreny
         Rectangle sz1  = new Rectangle(30,30,Color.GRAY);
         Rectangle sz2  = new Rectangle(30,30,Color.GRAY);
-        sz1.setX(start[randompos[11]].x-15);
-        sz2.setX(start[randompos[12]].x-15);
-        sz1.setY(start[randompos[11]].y-15);
-        sz2.setY(start[randompos[12]].y-15);
+        sz1.setX(start[randompos[5]].x-15);
+        sz2.setX(start[randompos[6]].x-15);
+        sz1.setY(start[randompos[5]].y-15);
+        sz2.setY(start[randompos[6]].y-15);
         items.getChildren().add(sz1);
         items.getChildren().add(sz2);
-        utasitasok.crttile(new String[]{"","wardrobe", String.valueOf(11)});
-        utasitasok.crttile(new String[]{"","wardrobe", String.valueOf(12)});
+        utasitasok.crttile(new String[]{"","wardrobe", String.valueOf(randompos[5])});
+        utasitasok.crttile(new String[]{"","wardrobe", String.valueOf(randompos[6])});
 
         //bekijárat
         Polygon be = new Polygon(15.0,0.0,0.0,30.0,30.0,30.0);
         Polygon ki = new Polygon(0.0,0.0,30.0,0.0,15.0,30.0);
         be.setFill(Color.GREEN);
         ki.setFill(Color.RED);
-        be.relocate(start[randompos[13]].x,start[randompos[13]].y);
-        ki.relocate(start[randompos[14]].x,start[randompos[14]].y);
+        be.relocate(start[randompos[7]].x,start[randompos[7]].y);
+        ki.relocate(start[randompos[8]].x,start[randompos[8]].y);
         items.getChildren().add(be);
         items.getChildren().add(ki);
-        utasitasok.crttile(new String[]{"","entry", String.valueOf(13)});
-        utasitasok.crttile(new String[]{"","exit", String.valueOf(14)});
+        utasitasok.crttile(new String[]{"","entry", String.valueOf(randompos[7])});
+        utasitasok.crttile(new String[]{"","exit", String.valueOf(randompos[8])});
 
         for(int x= 0; x< mezok;x++)
         {
             for (int y = 0; y<mezok;y++)
             {
-                if (x!=y&&nei[x][y])
+                if (x==y){nei[x][y]=false;}
+                if (nei[x][y])
                 {
                     utasitasok.linkt(new String[]{"",String.valueOf(x), String.valueOf(y)});
                 }
             }
         }
 
+        utasitasok.linkw(new String[]{"",String.valueOf(randompos[5]), String.valueOf(randompos[6])});//szekrény kötés azért itt mert kellenek hozzá a szomszédok
 
         Controller.getInstance().setPandas(pandas);
         Controller.getInstance().setPlayer1(player1);
         Controller.getInstance().setPlayer2(player2);
         Controller.getInstance().setStart(start);
+        Controller.getInstance().setNei(nei);
+        ArrayList<Ornagutan_FX> orangutans = new ArrayList<>();
+        orangutans.add(player1);
+        orangutans.add(player2);
+        Controller.getInstance().setOrangutan(orangutans);
 
-
+        player1.place(start[randompos[7]]);
+        utasitasok.crtunit(new String[] {"","orangutan",String.valueOf(randompos[7]),"player1"});
+        utasitasok.crtunit(new String[] {"","orangutan","fake","player2"});
         items.setMouseTransparent(true);
+
         pane.getChildren().add(items);
         //Adding the scene to Stage
         primaryStage.setScene(scene);

@@ -185,12 +185,14 @@ public class Main extends Application {
         orangutans.add(player1);
         orangutans.add(player2);
         Controller.getInstance().setOrangutan(orangutans);
+        Group lines = new Group();
+        Controller.getInstance().setLines(lines);
 
         player1.place(start[randompos[7]]);
         utasitasok.crtunit(new String[] {"","orangutan",String.valueOf(randompos[7]),"player1"});
         utasitasok.crtunit(new String[] {"","orangutan","fake","player2"});
         items.setMouseTransparent(true);
-
+        pane.getChildren().add(lines);
         pane.getChildren().add(items);
         //Adding the scene to Stage
         primaryStage.setScene(scene);

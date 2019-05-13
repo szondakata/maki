@@ -90,6 +90,7 @@ public class utasitasok {
             unit.ID = args[3];
             Field needed = null;
             Field fake = new Field();
+            fake.ID = "fake";
             for (Field field : control.items) {
                 if (field.ID.equals(args[2]))
                     needed = field;

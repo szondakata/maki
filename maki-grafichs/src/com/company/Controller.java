@@ -1,5 +1,9 @@
 package com.company;
+
+import javafx.scene.Group;
 import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 
 import java.util.ArrayList;
 
@@ -49,6 +53,12 @@ public class Controller {
 
     Label label;
 
+    public void setLines(Group lines) {
+        this.lines = lines;
+    }
+
+    Group lines;
+
     public static Controller getInstance() {
         if (instance==null){instance=new Controller();}
         return instance;
@@ -59,33 +69,36 @@ public class Controller {
     private Controller() {
         instance = this;
     }
-    boolean egyes=true;
+    boolean egyes=false;
+
     int hol;
+
     public void mouse_click(int mit)
     {
-            hol = Integer.parseInt(utasitasok.control.orangutans.get((/* egyes ? */0/* :1*/)).getIamon().ID);
+            hol = Integer.parseInt(utasitasok.control.orangutans.get(( egyes ? 1 : 0)).getIamon().ID);
             if (nei[hol][mit]) {
-                System.out.println("didit: " + String.valueOf(mit));
                 egyes = !egyes;
-                label.setText(egyes ? "Első játékos jön!" : "Második játékos jön!");
-                utasitasok.move(new String[]{"", (/*egyes ?*/ "player1"/* : "player2"*/), String.valueOf(mit)});
-                update_pandas();
-                update_orangutans();
+                System.out.println("didit: " + String.valueOf(mit));
+                label.setText(!egyes ? "Első játékos jön!" : "Második játékos jön!");
+                utasitasok.move(new String[]{"", (egyes ? "player1" : "player2"), String.valueOf(mit)});
             } else {
                 //valami alert hogy nem szomszédosat klikkeltél
             }
-        /*if(utasitasok.control.orangutans.get(1).getIamon().ID=="fake"&& Entry.getInstance().getContain()==null)
+        if(utasitasok.control.orangutans.get(1).getIamon().ID=="fake"&& Entry.getInstance().getContain()==null)
         {
             utasitasok.control.move(utasitasok.control.orangutans.get(1),Entry.getInstance());
-        }*/
+        }
+        update_pandas();
+        update_orangutans();
+        update_lines();
     }
 
     private  void update_orangutans()
     {
         orangutan.get(0).place(start[Integer.parseInt(utasitasok.control.orangutans.get(0).getIamon().ID)]);
-        /*if (utasitasok.control.orangutans.get(1).getIamon().ID!="fake") {
+        if (utasitasok.control.orangutans.get(1).getIamon().ID!="fake") {
             orangutan.get(1).place(start[Integer.parseInt(utasitasok.control.orangutans.get(1).getIamon().ID)]);
-        }*/
+        }
     }
 
     private void update_pandas()
@@ -97,5 +110,21 @@ public class Controller {
         }
     }
 
+    private void update_lines()
+    {
+        lines.getChildren().clear();
+        for (int i = 0;i<2;i++) {
+            for (Unit u = utasitasok.control.orangutans.get(i); u.getHand2() != null; u = u.getHand2()) {
+                Line line = new Line();
+                line.setStartX(start[Integer.parseInt(u.getIamon().ID)].x);
+                line.setStartY(start[Integer.parseInt(u.getIamon().ID)].y);
+                line.setEndX(start[Integer.parseInt(u.getHand2().getIamon().ID)].x);
+                line.setEndY(start[Integer.parseInt(u.getHand2().getIamon().ID)].y);
+                line.setStrokeWidth(5);
+                line.setStroke(Color.BLACK);
+                lines.getChildren().add(line);
+            }
+        }
+    }
 
 }

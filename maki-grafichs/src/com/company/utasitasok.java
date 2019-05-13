@@ -23,7 +23,7 @@ public class utasitasok {
 
         if (args.length < 3) {
             if (args.length == 2 && args[1].equals("help"))
-                System.out.println("crtunit -unittype -unitID");
+                System.out.println("crtunit -unittype -place -unitID");
 
             System.out.println("Nincs elegendő argomentum! A parancs formátumáért próbáld:<crtunit -help> opciót");
             return;
@@ -63,6 +63,7 @@ public class utasitasok {
             lastcreated.setContain(unit);
             unit.setIamon(lastcreated);
         } else {
+            unit.ID = args[3]
             Field needed = null;
             for (Field field : control.items) {
                 if (field.ID.equals(args[2]))

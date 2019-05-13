@@ -78,6 +78,10 @@ public class Main extends Application {
         start[randompos[7]].ki.setStroke(Color.BLACK);
         start[randompos[7]].ki.setStrokeWidth(5);
 
+        Ornagutan_FX player1 = new Ornagutan_FX(true);
+        Ornagutan_FX player2 = new Ornagutan_FX(false);
+        items.getChildren().add(player1.animal);
+        items.getChildren().add(player2.animal);
 
         //6 panda
         ArrayList<Panda_FX> pandas=new ArrayList<>();
@@ -91,19 +95,19 @@ public class Main extends Application {
             switch (r_type)
             {
                 case 0:
-                    utasitasok.crtunit(new String[]{"","panda", String.valueOf(i)});
+                    utasitasok.crtunit(new String[]{"","panda", String.valueOf(i),i*100});
                     break;
                 case 1:
-                    utasitasok.crtunit(new String[]{"","ijedos", String.valueOf(i)});
+                    utasitasok.crtunit(new String[]{"","ijedos", String.valueOf(i),i*100});
                     break;
                 case 2:
-                    utasitasok.crtunit(new String[]{"","ugralos", String.valueOf(i)});
+                    utasitasok.crtunit(new String[]{"","ugralos", String.valueOf(i),i*100});
                     break;
                 case 3:
-                    utasitasok.crtunit(new String[]{"","almos", String.valueOf(i)});
+                    utasitasok.crtunit(new String[]{"","almos", String.valueOf(i),i*100});
                     break;
                 default:
-                    utasitasok.crtunit(new String[]{"","panda", String.valueOf(i)});
+                    utasitasok.crtunit(new String[]{"","panda", String.valueOf(i),i*100});
             }
         }
         //1 csoki

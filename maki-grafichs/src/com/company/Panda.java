@@ -8,6 +8,7 @@ public class Panda extends Unit {
 	public void grab(Unit unit) {
 		logger.depthP();
 		logger.writeMessage(this.toString()+".grab("+unit.toString()+")");
+		this.release();
 		Unit p2 = unit.getHand2();
 		setHand2(p2);
 		if (p2 != null)
@@ -16,6 +17,19 @@ public class Panda extends Unit {
 		}
 		unit.setHand2(this);
 		this.setHand1(unit);
+
+
+		Unit temp,myO;
+		myO = unit;
+		Field ToF;
+		ToF = this.getIamon();
+		temp = ToF.getContain();//Panda
+		myO.getIamon().setContain(temp);//Orángután helyére a pandát
+		temp.setIamon(myO.getIamon());
+		myO.setIamon(ToF);//Orángután a panda helyére
+		ToF.setContain(myO);//Az újra az orángutánt
+
+
 		logger.depthM();
 	}
 	

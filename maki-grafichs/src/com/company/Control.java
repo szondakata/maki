@@ -26,13 +26,6 @@ public class Control {
         if (!End()) {
             if (!myO.move(ToF)) {
                 ToF.getContain().grab(myO);//Szekvencia orángután-move else ág kiemelve
-
-                Unit temp;
-                temp = ToF.getContain();//Panda
-                myO.getIamon().setContain(temp);//Orángután helyére a pandát
-                temp.setIamon(myO.getIamon());
-                myO.setIamon(ToF);//Orángután a panda helyére
-                ToF.setContain(myO);//Az újra az orángutánt
             }
         } else {
             System.out.println("A játék már véget ért!");

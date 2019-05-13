@@ -1,0 +1,6 @@
+crttile -fotel -t0
+crttile -tile -t1
+crtunit -panda -t1 -p0
+linkt -t0 -j0
+action -t0
+displaystatus -o0

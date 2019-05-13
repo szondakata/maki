@@ -1,0 +1,25 @@
+crttile -tile -t0
+crttile -tile -t1
+crttile -tile -t2
+crttile -tile -t3
+crttile -tile -t4
+crttile -sofa -s0
+linkt -t0 -t1
+linkt -t1 -t2
+linkt -t2 -t3
+linkt -t3 -t4
+linkt -t3 -s0
+crtunit -orangutan -t0 -o0
+crtunit -panda -t1 -p0
+crtunit -panda -t2 -p1
+crtunit -almos -t3 -a0
+crtunit -panda -t4 -p2
+linka -o0 -p0
+linka -p0 -p1
+linka -p1 -a0
+linka -a0 -p2
+action -s0
+listorangutans
+listpandas
+displaystatus -o0
+displaystatus -a0

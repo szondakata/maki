@@ -1,0 +1,7 @@
+crttile -breakable -t0
+crttile -vendingm -t1
+crtunit -ugralos -t0 -p0
+setweariness -1 -t0
+linkt -t0 -t1
+action -t1
+displaystatus -o0

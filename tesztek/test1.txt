@@ -1,0 +1,10 @@
+crttile -Entry -t1
+crttile -t0
+crtunit -orangutan -o0 -t0
+linkt -t0 -t1
+move -0 -t1
+listorangutans
+listtiles
+displaystatus -t0
+displaystatus -t1
+displaystatus -o1

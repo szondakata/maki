@@ -1,0 +1,30 @@
+crttile -tile -t0
+crttile -tile -t1
+crttile -tile -t2
+crttile -tile -t3
+crttile -tile -t4
+crttile -tile -t5
+crttile -gamem-j0
+linkt -t0 -t1
+linkt -t1 -j0
+linkt -j0 -t2
+linkt -t2 -t3
+linkt -t3 -t4
+linkt -t4 -t5
+crtunit -orangutan -t0 -o0
+crtunit -panda -t1 -p0
+crtunit -panda -j0 -p1
+crtunit -ijedos -t2 -i0
+crtunit -panda -t3 -p2
+crtunit -panda -t4 -p3
+crtunit -panda -t5 -p4
+linka -o0 -p0
+linka -p0 -p1
+linka -p1 -i0
+linka -i0 -p2
+linka -p2 -p3
+linka -p3 -p4
+action -j0
+listorangutans
+listpandas
+displaystatus -o0

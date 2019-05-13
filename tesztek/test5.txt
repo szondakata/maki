@@ -1,0 +1,4 @@
+crttile -tile -t2 
+crtunit -panda -t2 -p0
+kill -p0
+displaystatus -p0

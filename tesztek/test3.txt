@@ -1,0 +1,12 @@
+crttile -breakable -t0
+crtunit -ijedos -t0 -p0
+crttile -tile -t1
+crttile -sofa -t2
+crtunit -orangutan -t1 -0
+crtunit -panda -t2 -p1
+linkt -t0 -t1
+linkt -t2 -t1
+linka -o0 -p1
+move -o0- t0
+displaystatus -o0
+displaystatus -p0

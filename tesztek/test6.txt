@@ -1,0 +1,7 @@
+crttile -breakable -t0
+destroy -t0
+crttile -tile -t2 
+crtunit -panda -t2 -p0
+linkt -t0 -t2
+move -p0- t0
+displaystatus -p0

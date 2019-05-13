@@ -1,0 +1,7 @@
+crttile -entry -t0
+crttile -exit -t1
+crttile -tile -t2 
+crtunit -orangutan -t2 -o0
+linkt -t1 -t2
+move -o0- t1
+displaystatus -o0

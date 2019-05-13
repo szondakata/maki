@@ -30,14 +30,17 @@ public class Main extends Application {
         SplitPane split_pane = new SplitPane();
         split_pane.setOrientation(Orientation.VERTICAL);
         Pane pane = mf.draw();
-        Label label = new Label("PandaPláza");
+        Label label = new Label("Első játékos jön!");
+        Pane label_pane = new Pane(label);
+        label_pane.setPrefSize(1200,25);
+        label_pane.setMaxSize(1200,25);
+        Controller.getInstance().setLabel(label);
         //label.setVisible(false);
         Scene scene = new Scene(split_pane);
         //setting color to the scene
         scene.setFill(Color.WHITE);
 
-        label.setPrefHeight(50);
-        split_pane.getItems().add(label);
+        split_pane.getItems().add(label_pane);
         split_pane.getItems().add(pane);
         //Setting the title to Stage.
         primaryStage.setTitle("Pandaplaza Application");
@@ -95,19 +98,19 @@ public class Main extends Application {
             switch (r_type)
             {
                 case 0:
-                    utasitasok.crtunit(new String[]{"","panda", String.valueOf(i),i*100});
+                    utasitasok.crtunit(new String[]{"","panda", String.valueOf(i),"panda"+String.valueOf(i)});
                     break;
                 case 1:
-                    utasitasok.crtunit(new String[]{"","ijedos", String.valueOf(i),i*100});
+                    utasitasok.crtunit(new String[]{"","ijedos", String.valueOf(i),"panda"+String.valueOf(i)});
                     break;
                 case 2:
-                    utasitasok.crtunit(new String[]{"","ugralos", String.valueOf(i),i*100});
+                    utasitasok.crtunit(new String[]{"","ugralos", String.valueOf(i),"panda"+String.valueOf(i)});
                     break;
                 case 3:
-                    utasitasok.crtunit(new String[]{"","almos", String.valueOf(i),i*100});
+                    utasitasok.crtunit(new String[]{"","almos", String.valueOf(i),"panda"+String.valueOf(i)});
                     break;
                 default:
-                    utasitasok.crtunit(new String[]{"","panda", String.valueOf(i),i*100});
+                    utasitasok.crtunit(new String[]{"","panda", String.valueOf(i),"panda"+String.valueOf(i)});
             }
         }
         //1 csoki

@@ -63,7 +63,7 @@ public class utasitasok {
             lastcreated.setContain(unit);
             unit.setIamon(lastcreated);
         } else {
-            unit.ID = args[3]
+            unit.ID = args[3];
             Field needed = null;
             for (Field field : control.items) {
                 if (field.ID.equals(args[2]))
@@ -147,7 +147,6 @@ public class utasitasok {
             lastcreated = field;
             units.add(args[1]);
         }
-        units.add(args[1]);
     }
 
     public void linkt(String[] args) {
@@ -510,12 +509,9 @@ public class utasitasok {
 
     public void fastforward(String[] args) {
         if (args[2].equals("on")) {
-            for (int i = 0; i < Integer.parseInt(args[1]); i++)
-                control.movePandas();
+            for (int i = 0; i < Integer.parseInt(args[1]); i++){   control.movePandas();}
             control.updateItems();
-
         }
-
     }
 
     public void listpandas() {

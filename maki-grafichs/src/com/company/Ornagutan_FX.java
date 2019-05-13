@@ -3,7 +3,7 @@ package com.company;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
-public class Ornagutan_FX extends Animal_FX{
+public class Ornagutan_FX extends Animal_FX{//10 out of 10 would typo again
     public Ornagutan_FX(boolean egy_jatekos) {
         animal = new Circle(0,0,15, Color.GRAY);
         animal.setVisible(false);

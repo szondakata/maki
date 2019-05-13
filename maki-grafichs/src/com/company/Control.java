@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Control {
+    public int orangutanCount;
     public boolean isRandom=true;
     ArrayList<Orangutan> orangutans = new ArrayList<>();
     ArrayList<Panda> pandas = new ArrayList<>();

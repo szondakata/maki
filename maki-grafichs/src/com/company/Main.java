@@ -44,6 +44,8 @@ public class Main extends Application {
         split_pane.getItems().add(pane);
         //Setting the title to Stage.
         primaryStage.setTitle("Pandaplaza Application");
+
+
         int[] randompos = new int[mezok];
         Random random = new Random();
         int actual= -1;
@@ -51,6 +53,8 @@ public class Main extends Application {
         for (int y = 0; y < mezok; y++) {
             randompos[y]=-1;
         }
+
+
         for (int i = 0;i<mezok;i++) {
             do{
                 actual = random.nextInt(mezok);
@@ -61,6 +65,8 @@ public class Main extends Application {
             } while (egyedi);
             randompos[i]=actual;
         }
+
+
         Group items = new Group();
         utasitasok utasitasok = new utasitasok();
         Controller.getInstance().setUtasitasok(utasitasok);

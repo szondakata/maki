@@ -1,6 +1,8 @@
 package com.company;
 import javafx.scene.control.Label;
 
+import java.util.ArrayList;
+
 public class Controller {
 
     public void setNei(boolean[][] nei) {
@@ -11,9 +13,30 @@ public class Controller {
         this.start = start;
     }
 
+    Ornagutan_FX player1;
+    Ornagutan_FX player2;
+    ArrayList<Panda_FX> pandas;
+
+    public void setPlayer1(Ornagutan_FX player1) {
+        this.player1 = player1;
+    }
+
+    public void setPlayer2(Ornagutan_FX player2) {
+        this.player2 = player2;
+    }
+
+    public void setPandas(ArrayList<Panda_FX> pandas) {
+        this.pandas = pandas;
+    }
+
     boolean[][] nei;
     koor[] start;
 
+    public void setUtasitasok(com.company.utasitasok utasitasok) {
+        this.utasitasok = utasitasok;
+    }
+
+    utasitasok utasitasok;
     public void setLabel(Label label) {
         this.label = label;
     }
@@ -36,6 +59,18 @@ public class Controller {
         System.out.println("didit: "+String.valueOf(mit));
         egyes= !egyes;
         label.setText(egyes?"Első játékos jön!":"Második játékos jön!");
+        utasitasok.control.pandas.get(0);
+        update_pandas();
+        utasitasok.move(new String[]{"",String.valueOf(1),String.valueOf(mit)});
+    }
+
+    private void update_pandas()
+    {
+        for (Panda p:utasitasok.control.pandas) {
+            StringBuilder sb = new StringBuilder(p.ID);
+            sb.delete(0,5);
+            pandas.get(Integer.parseInt(sb.toString())).place(start[Integer.parseInt(p.getIamon().ID)]);
+        }
     }
 
 

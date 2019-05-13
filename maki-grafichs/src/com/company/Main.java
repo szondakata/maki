@@ -63,6 +63,7 @@ public class Main extends Application {
         }
         Group items = new Group();
         utasitasok utasitasok = new utasitasok();
+        Controller.getInstance().setUtasitasok(utasitasok);
 
         for (int i=0;i<mezok;i++)
         {
@@ -168,6 +169,11 @@ public class Main extends Application {
                 }
             }
         }
+
+
+        Controller.getInstance().setPandas(pandas);
+        Controller.getInstance().setPlayer1(player1);
+        Controller.getInstance().setPlayer2(player2);
 
 
         items.setMouseTransparent(true);

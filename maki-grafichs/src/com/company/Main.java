@@ -99,19 +99,19 @@ public class Main extends Application {
             switch (r_type)
             {
                 case 0:
-                    utasitasok.crtunit(new String[]{"","panda", String.valueOf(i),"panda"+String.valueOf(i)});
+                    utasitasok.crtunit(new String[]{"","panda", String.valueOf(randompos[i]),"panda"+String.valueOf(i)});
                     break;
                 case 1:
-                    utasitasok.crtunit(new String[]{"","ijedos", String.valueOf(i),"panda"+String.valueOf(i)});
+                    utasitasok.crtunit(new String[]{"","ijedos", String.valueOf(randompos[i]),"panda"+String.valueOf(i)});
                     break;
                 case 2:
-                    utasitasok.crtunit(new String[]{"","ugralos", String.valueOf(i),"panda"+String.valueOf(i)});
+                    utasitasok.crtunit(new String[]{"","ugralos", String.valueOf(randompos[i]),"panda"+String.valueOf(i)});
                     break;
                 case 3:
-                    utasitasok.crtunit(new String[]{"","almos", String.valueOf(i),"panda"+String.valueOf(i)});
+                    utasitasok.crtunit(new String[]{"","almos", String.valueOf(randompos[i]),"panda"+String.valueOf(i)});
                     break;
                 default:
-                    utasitasok.crtunit(new String[]{"","panda", String.valueOf(i),"panda"+String.valueOf(i)});
+                    utasitasok.crtunit(new String[]{"","panda", String.valueOf(randompos[i]),"panda"+String.valueOf(i)});
             }
         }
         //1 csoki
@@ -174,6 +174,7 @@ public class Main extends Application {
         Controller.getInstance().setPandas(pandas);
         Controller.getInstance().setPlayer1(player1);
         Controller.getInstance().setPlayer2(player2);
+        Controller.getInstance().setStart(start);
 
 
         items.setMouseTransparent(true);

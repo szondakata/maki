@@ -284,7 +284,7 @@ public class utasitasok {
         }
 
         for (Field f : control.items) {
-            if (f.ID.equals(args[1]))
+            if (f.ID.equals(args[2]))
                 field = f;
         }
 

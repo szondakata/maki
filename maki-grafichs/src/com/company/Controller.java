@@ -60,15 +60,17 @@ public class Controller {
         egyes= !egyes;
         label.setText(egyes?"Első játékos jön!":"Második játékos jön!");
         utasitasok.control.pandas.get(0);
+        utasitasok.move(new String[]{"","panda1",String.valueOf(mit)});
         update_pandas();
-        utasitasok.move(new String[]{"",String.valueOf(1),String.valueOf(mit)});
     }
 
     private void update_pandas()
     {
+        int i=0;
         for (Panda p:utasitasok.control.pandas) {
             StringBuilder sb = new StringBuilder(p.ID);
             sb.delete(0,5);
+            System.out.println(sb.toString()+"   "+p.getIamon().ID);
             pandas.get(Integer.parseInt(sb.toString())).place(start[Integer.parseInt(p.getIamon().ID)]);
         }
     }

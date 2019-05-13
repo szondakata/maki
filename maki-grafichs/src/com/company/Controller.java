@@ -63,27 +63,29 @@ public class Controller {
     int hol;
     public void mouse_click(int mit)
     {
-            hol = Integer.parseInt(utasitasok.control.orangutans.get(( egyes ? 0 : 1)).getIamon().ID);
+            hol = Integer.parseInt(utasitasok.control.orangutans.get((/* egyes ? */0/* :1*/)).getIamon().ID);
             if (nei[hol][mit]) {
                 System.out.println("didit: " + String.valueOf(mit));
                 egyes = !egyes;
                 label.setText(egyes ? "Első játékos jön!" : "Második játékos jön!");
-                utasitasok.move(new String[]{"", (egyes ? "player1" : "player2"), String.valueOf(mit)});
+                utasitasok.move(new String[]{"", (/*egyes ?*/ "player1"/* : "player2"*/), String.valueOf(mit)});
                 update_pandas();
                 update_orangutans();
             } else {
                 //valami alert hogy nem szomszédosat klikkeltél
             }
-        if(utasitasok.control.orangutans.get(1).getIamon().ID=="fake"&& Entry.getInstance().getContain()==null)
+        /*if(utasitasok.control.orangutans.get(1).getIamon().ID=="fake"&& Entry.getInstance().getContain()==null)
         {
-            ;
-        }
+            utasitasok.control.move(utasitasok.control.orangutans.get(1),Entry.getInstance());
+        }*/
     }
 
     private  void update_orangutans()
     {
         orangutan.get(0).place(start[Integer.parseInt(utasitasok.control.orangutans.get(0).getIamon().ID)]);
-        //orangutan.get(1).place(start[Integer.parseInt(utasitasok.control.orangutans.get(1).getIamon().ID)]);
+        /*if (utasitasok.control.orangutans.get(1).getIamon().ID!="fake") {
+            orangutan.get(1).place(start[Integer.parseInt(utasitasok.control.orangutans.get(1).getIamon().ID)]);
+        }*/
     }
 
     private void update_pandas()

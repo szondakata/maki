@@ -63,17 +63,20 @@ public class Controller {
     int hol;
     public void mouse_click(int mit)
     {
-        hol = Integer.parseInt(utasitasok.control.orangutans.get(0).getIamon().ID);
-        if(nei[hol][mit]) {
-            System.out.println("didit: " + String.valueOf(mit));
-            egyes = !egyes;
-            label.setText(egyes ? "Első játékos jön!" : "Második játékos jön!");
-            utasitasok.move(new String[]{"", "player1", String.valueOf(mit)});
-            update_pandas();
-            update_orangutans();
-        }
-        else{
-            //valami alert hogy nem szomszédosat klikkeltél
+            hol = Integer.parseInt(utasitasok.control.orangutans.get(( egyes ? 0 : 1)).getIamon().ID);
+            if (nei[hol][mit]) {
+                System.out.println("didit: " + String.valueOf(mit));
+                egyes = !egyes;
+                label.setText(egyes ? "Első játékos jön!" : "Második játékos jön!");
+                utasitasok.move(new String[]{"", (egyes ? "player1" : "player2"), String.valueOf(mit)});
+                update_pandas();
+                update_orangutans();
+            } else {
+                //valami alert hogy nem szomszédosat klikkeltél
+            }
+        if(utasitasok.control.orangutans.get(1).getIamon().ID=="fake"&& Entry.getInstance().getContain()==null)
+        {
+            ;
         }
     }
 

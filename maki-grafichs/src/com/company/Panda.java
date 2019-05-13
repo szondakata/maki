@@ -4,7 +4,7 @@ package com.company;
 public class Panda extends Unit {
 
 	//Orángután hívja meg a lánc kialakításához
-	//Orangutan orangutan: Hívó orángután
+	//Orangutan animal: Hívó orángután
 	public void grab(Unit unit) {
 		logger.depthP();
 		logger.writeMessage(this.toString()+".grab("+unit.toString()+")");

@@ -33,7 +33,7 @@ public class utasitasok {
         Unit unit = null;
 
         switch (args[1]) {
-            case "orangutan":
+            case "animal":
                 unit = new Orangutan();
                 break;
             case "panda":
@@ -49,7 +49,7 @@ public class utasitasok {
                 unit = new Ijedos();
                 break;
             default:
-                System.out.println("Ismeretlen argumentum, lehetséges argomentumok: orangutan, panda, almos, ugralos, ijedos.");
+                System.out.println("Ismeretlen argumentum, lehetséges argomentumok: animal, panda, almos, ugralos, ijedos.");
                 return;
         }
 
@@ -83,7 +83,7 @@ public class utasitasok {
 
         }
 
-        if (args[1].equals("orangutan"))
+        if (args[1].equals("animal"))
             control.addOrangutan((Orangutan) unit);
         else
             control.addPanda((Panda) unit);

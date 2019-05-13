@@ -11,7 +11,7 @@ public class Field {
 
 	public Field()
 	{
-		logger=new Logger();
+		logger=new Logger();nei = new ArrayList<>();
 	}
 
 	public Unit getContain() {

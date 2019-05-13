@@ -199,6 +199,7 @@ public class Main extends Application {
 
         //Displaying the contents of the stage
         primaryStage.show();
+        utasitasok.listtiles();
     }
 
 

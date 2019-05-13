@@ -20,8 +20,9 @@ public class Breakable extends Field {
 			if (remainLifetime<1)//Ha eltörik, aki rajta áll meghal
 			{
 				u.die();
-				for (Field f:getNei()) {		//Törli a hozzátartozó szomszédi kapcsolatokat a vele szomszédos mezőkben
+				for (Field f:getNei()) {//Törli a hozzátartozó szomszédi kapcsolatokat a vele szomszédos mezőkben
 					f.getNei().remove(this);
+
 				}
 				setNei(null);
 

@@ -6,6 +6,7 @@ import javafx.scene.shape.Circle;
 public class Panda_FX extends Animal_FX
 {
     public Panda_FX(int type) {//0 sima fekete, 1 ijedős fehér, 2 ugrálós zöld, 3 álmos sárga
+        int graphics_ID;
         animal = new Circle(0,0,15, Color.BLACK);
         animal.setVisible(false);
         switch (type)

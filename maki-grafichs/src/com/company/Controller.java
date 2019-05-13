@@ -106,9 +106,21 @@ public class Controller {
         for (Panda p:utasitasok.control.pandas) {
             StringBuilder sb = new StringBuilder(p.ID);
             sb.delete(0,5);
-            pandas.get(Integer.parseInt(sb.toString())).place(start[Integer.parseInt(p.getIamon().ID)]);
+            System.out.println(sb);
+            if(!p.isAlive){
+                pandas.get(Integer.parseInt(sb.toString())).kill();
+            }else {
+                pandas.get(Integer.parseInt(sb.toString())).place(start[Integer.parseInt(p.getIamon().ID)]);
+            }
         }
     }
+
+    /*public void tileBroken(int ID){
+        for (int i=0;i<nei.length)
+             ) {
+
+        }
+    }*///TODO ezt befejezni
 
     private void update_lines()
     {

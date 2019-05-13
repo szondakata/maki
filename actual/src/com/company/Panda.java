@@ -1,10 +1,14 @@
 package com.company;
 
 
+/**
+ * A pandat megvalosito osztaly
+ */
 public class Panda extends Unit {
 
-	//Orángután hívja meg a lánc kialakításához
-	//Orangutan orangutan: Hívó orángután
+	/** A fuggveny megfogja a parametereben kapott egyseg hatso mancsat.
+	 * @param unit az egyseg
+	 */
 	public void grab(Unit unit) {
 		logger.depthP();
 		logger.writeMessage(this.toString()+".grab("+unit.toString()+")");
@@ -18,7 +22,10 @@ public class Panda extends Unit {
 		this.setHand1(unit);
 		logger.depthM();
 	}
-	
+
+	/** A fuggveny hatasara a panda elhagyja a palyat
+	 * @param f a kijarat
+	 */
 	public void exit(Field f) {
 		logger.depthP();
 		logger.writeMessage(this.toString()+".exit()");
@@ -36,7 +43,9 @@ public class Panda extends Unit {
 
 	}
 
-
+	/** A parameterben kapott csokiautomata sipolasara az nem ugralos nem csinal semmit
+	 * @param cs a csokiautomata
+	 */
 	@Override
 	public void action(Csoki cs) {
 		logger.depthP();
@@ -44,6 +53,9 @@ public class Panda extends Unit {
 		logger.depthM();
 	}
 
+	/** A parameterben kapott jatekautomata csilingelesere a nem ijedos nem csinal semmit
+	 * @param j a jatekgep
+	 */
 	@Override
 	public void action(Jatek j) {
 		logger.depthP();
@@ -51,6 +63,10 @@ public class Panda extends Unit {
 		logger.depthM();
 	}
 
+
+	/** A parameterben kapott fotel hatasara nem faradt panda nem csinal semmit sem
+	 * @param f a fotel
+	 */
 	@Override
 	public void action(Fotel f) {
 		logger.depthP();

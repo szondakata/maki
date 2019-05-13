@@ -1,25 +1,36 @@
 package com.company;
-
-
 import java.util.Random;
 
+/**
+ * Az almos pandat megvalosito osztaly
+ */
 public class Almos extends Panda {
 
+	/**
+	 * A panda energiaja
+	 */
 	private int energy;
-	private boolean isEnergic =true;
+	/**
+	 * A panda energikus-e
+	 */
+	private boolean isEnergic = true;
 	Random rand = new Random();
 
+	/**
+	 * Alapesetben a pandanak 4 az ebersege
+	 */
 	public Almos() {
-
 		energy=4;
 		//energy = rand.nextInt(4);
 	}
 
-	public void action(Fotel f) {//Csak az Álmos panda reagál rá
+	/** A panda reakciojat a parameterben kapott fotellel leiro fuggveny
+	 * @param f a fotel
+	 */
+	public void action(Fotel f) {//Only sleepy panda reacts
 		logger.depthP();
 		logger.writeMessage(this.toString()+".Action("+f.toString()+")");
-		if(!isEnergic) { //ha fáradt leül
-
+		if(!isEnergic) {
 			if (getHand1() != null) {
 				release();
 				move(f);
@@ -27,8 +38,8 @@ public class Almos extends Panda {
 					isEnergic = !isEnergic;
 					//energy = rand.nextInt(4);
 					energy=4;
-					energy++; //mivel leült ezért töltődik az energiája
-					if(energy==5) //ha kipihenti magát akkor újra energikus lesz
+					energy++;
+					if(energy==5)
 						isEnergic =true;
 				}
 			}
@@ -36,16 +47,20 @@ public class Almos extends Panda {
 		logger.depthM();
 	}
 
+	/** A fuggveny a parameterben kapott csempere mozgatja a pandat
+	 * @param f a kivant csempe
+	 * @return sikeres volt a mozgas
+	 */
 	@Override
 	public boolean move(Field f)
 	{
 		logger.depthP();
 		logger.writeMessage(this.toString()+".move("+f.toString()+")");
-		if (isEnergic) {  //ha nem fárasdt lép
-			energy--;     //elkezd fáradni
-			if(energy<1) //ha elfogy az energiája akkor elfárad
+		if (isEnergic) {
+			energy--;
+			if(energy<1)
 				isEnergic=false;
-			if (f.getContain() == null)//Léphetek-e oda?
+			if (f.getContain() == null)
 			{
 
 				f.setContain(this);
@@ -64,7 +79,6 @@ public class Almos extends Panda {
 		}
 		logger.depthM();
 		return false;
-
 	}
 
 }

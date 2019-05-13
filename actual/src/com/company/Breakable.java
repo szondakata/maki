@@ -1,38 +1,59 @@
 package com.company;
 
+/**
+ * A torheto csempet megvalosito osztaly
+ */
 public class Breakable extends Field {
-	private int remainLifetime=5;//Hátralévő élet
-	public int getRemainLifetime() {
-		return remainLifetime;
-	}
+    /**
+     * A csempe elettartama
+     */
+    private int remainLifetime = 5;
 
-	public void setRemainLifetime(int remainLifetime) {
-		this.remainLifetime = remainLifetime;
-	}
+    /** A csempe elettartamat megado fuggveny
+     * @return a csempe elettartama
+     */
+    public int getRemainLifetime() {
+        return remainLifetime;
+    }
 
-	@Override
-	public void stepped(Unit u) {//Ha rálépnek meghívódik Unit u:aki rá lépett
-		logger.depthP();
-		logger.writeMessage(this.toString()+".stepped(+"+u.toString()+")");
-		if (u!= null)
-		{
-			remainLifetime--;
-			if (remainLifetime<1)//Ha eltörik, aki rajta áll meghal
-			{
-				u.die();
-				for (Field f:getNei()) {		//Törli a hozzátartozó szomszédi kapcsolatokat a vele szomszédos mezőkben
-					f.getNei().remove(this);
-				}
-				setNei(null);
+    /** A fuggveny a parameterben kapott ertekre allitja a csempe elettartamat
+     * @param remainLifetime a maradek elet
+     */
+    public void setRemainLifetime(int remainLifetime) {
+        this.remainLifetime = remainLifetime;
+    }
 
-			}
-		}
-		logger.depthM();
-	}
 
-	@Override
-	public void Update() {
-		if(remainLifetime<=0)
-			stepped(new Panda());
-	}
+    /** A fuggveny a parameterben kapott egyseg nemnullasagara elettartamcsokkenest visz veghez.
+     * Ha a csempe elete elfogyott, megoli az egyseget es kitorli magat a szomszedai kozul
+     * @param u az egyseg
+     */
+    @Override
+    public void stepped(Unit u) {
+        logger.depthP();
+        logger.writeMessage(this.toString() + ".stepped(+" + u.toString() + ")");
+        if (u != null) {
+            remainLifetime--;
+            if (remainLifetime < 1)
+            {
+                if (getContain() != null) {
+                    u.die();
+                }
+                for (Field f : getNei()) {
+                    f.getNei().remove(this);
+                }
+                setNei(null);
+            }
+        }
+        logger.depthM();
+    }
+
+    /**
+     * TODO Ez egy butasag, de nem en irtam es nem is tudom mit csinal, ugyhogy itt hagyom
+     */
+    @Override
+    public void Update() {
+        if (remainLifetime <= 0)
+            stepped(new Panda());
+    }
 }

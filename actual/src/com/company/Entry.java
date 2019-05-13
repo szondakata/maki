@@ -1,12 +1,15 @@
 package com.company;
 
 
-//Entry legyen singelton
+/**
+ * A bejaratot megvalosito osztaly
+ */
 public class Entry extends Field {
+
     private  static Entry instance;
+
     private Entry()
         {
-
         }
 
         static {

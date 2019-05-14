@@ -82,8 +82,13 @@ public class Main extends Application {
         split_pane.getItems().add(pane);
 
         Random random = new Random();
-
         int[] randompos = new int[42];
+
+        for (int x = 0; x<42;x++)
+        {
+            randompos[x] = -1;
+        }
+
         randompos[0] = 32;//törékeny
         randompos[1] = 22;//törékeny
         randompos[2] = 27;//csoki
@@ -102,7 +107,9 @@ public class Main extends Application {
 
         for (int ixi = 15; ixi<mezok;ixi++)
         {
-            randompos[ixi]=ixi;
+            if (randompos[ixi]==-1) {
+                randompos[ixi] = ixi;
+            }
         }
 
         Group items = new Group();

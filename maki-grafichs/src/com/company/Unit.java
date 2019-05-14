@@ -73,9 +73,9 @@ public Field getIamon() {
 		logger.depthP();
 		logger.writeMessage(this.toString()+".die()");
 		logger.depthM();
-		if(getIamon().getContain()!=null)
-			getIamon().setContain(null);
-
+		if(getIamon()!=null) {
+            getIamon().setContain(null);
+        }
 		setIamon(null);
 
 		this.release();

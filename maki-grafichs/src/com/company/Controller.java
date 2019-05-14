@@ -115,7 +115,6 @@ public class Controller {
         for (Panda p:utasitasok.control.pandas) {
             StringBuilder sb = new StringBuilder(p.ID);
             sb.delete(0,5);
-            System.out.println(sb);
             if(!p.isAlive){
                 pandas.get(Integer.parseInt(sb.toString())).kill();
             }else {

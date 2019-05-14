@@ -13,7 +13,7 @@ public class Map_FX
     public boolean[][] getNei() {
         return nei;
     }
-
+    int fake_points;
     koor[] start;
 
     public koor[] getStart() {
@@ -28,6 +28,7 @@ public class Map_FX
     int cells;
     int size_x,size_y;
     public Map_FX(int c,int x,int y) {
+        fake_points = -1;
         nei = new boolean[c][c];
         size_x=x;
         size_y = y;
@@ -39,10 +40,9 @@ public class Map_FX
             start[i].x = rand.nextInt(size_x);
             start[i].y = rand.nextInt(size_y);
         }
-        panda = new Circle(0,0,5);
-        panda.setVisible(false);
     }
     public Map_FX(int c) {
+        fake_points = -1;
         nei = new boolean[c][c];
         size_x=500;
         size_y = 500;
@@ -54,15 +54,19 @@ public class Map_FX
             start[i].x = rand.nextInt(size_x);
             start[i].y = rand.nextInt(size_y);
         }
-        panda = new Circle(-100,-100,5);
-        panda.setVisible(false);
     }
 
-    /*public Map_FX(koor[] pontoka) {
+    public Map_FX(koor[] pontoka,int c,int x, int y) {
+        fake_points = c-1;
+        size_x=x;
+        size_y = y;
+        cells =pontoka.length;
+        nei = new boolean[cells][cells];
         start = pontoka;
-    }*/
+        Random rand = new Random();
+    }
     boolean[][] nei ;
-    public ArrayList<ArrayList<koor>> generate(int size_x, int size_y, int cells)
+    public ArrayList<ArrayList<koor>> generate(int size_x, int size_y)
     {
 
         ImageMap I;
@@ -72,10 +76,6 @@ public class Map_FX
         I = new ImageMap(size_x,size_y);
         koor[][] szele = new koor[cells][size_x*size_y/cells*5];
         int[] szeles = new int[cells];
-        for (int i = 0; i < cells; i++) {
-            start[i].x = rand.nextInt(size_x);
-            start[i].y = rand.nextInt(size_y);
-        }
         for (int a=0;a<cells;a++)
         {
             for (int b=0;b<(size_x*size_y/cells*5);b++){
@@ -87,10 +87,11 @@ public class Map_FX
             for (int y = 0; y < size_y; y++) {
                 n = 0;
                 for (byte i = 0; i < cells; i++) {
-                    if (distance(start[i].x, x, start[i].y, y) < distance(start[n].x, x, start[n].y, y)) {
-                        n = i;
 
-                    }
+                        if (distance(start[i].x, x, start[i].y, y) < distance(start[n].x, x, start[n].y, y)) {
+                            n = i;
+
+                        }
                 }
                 I.setRGB(x, y, n);
                 //System.out.println(n);
@@ -154,98 +155,50 @@ public class Map_FX
         Pane pane=new Pane();
         Polygon perm;
         ArrayList<Double> kord = new ArrayList<>();
-        ArrayList<ArrayList<koor>> halmaz =generate(size_x,size_y,cells);
+        ArrayList<ArrayList<koor>> halmaz =generate(size_x,size_y);
         int start_id;
         start_id = 0;
 
 
         for (ArrayList<koor> list:halmaz) {
-            int i=1;
-
-
-            Color csoportszin = Color.color(Math.random(), Math.random(), Math.random());
-            /*for (int x = 0 ; x< list.size();x++)
-            {
-                for (int y = x+1 ; y< list.size();y++)
-                {
-                    for (int z = y+1 ; z< list.size();z++)
-                    {
-                        if (Math.abs(terulet(list.get(x),list.get(y),list.get(z)))<1)
-                        {
-                            list.remove(y);
-                            System.out.println("Csúcs eltávolítva: "+i);
-                            i++;
-                        }
-                    }
+            if (start_id<42) {
+                Color csoportszin = Color.color(Math.random(), Math.random(), Math.random());
+                int avg_x = 0, avg_y = 0, count = 0;
+                for (koor kordinata : list) {
+                    avg_x += kordinata.x;
+                    avg_y += kordinata.y;
+                    count++;
                 }
-            }
-            Circle pont;
-            Group pontok = new Group();
-            for (koor ponty:list) {
-                pont = new Circle(ponty.x,ponty.y,3);
-                pont.setFill(csoportszin);
-                pont.setStroke(Color.WHITE);
-                pont.setStrokeWidth(0.5);
-                pontok.getChildren().add(pont);
-            }
-                */
-            int avg_x=0,avg_y=0,count=0;
-            for (koor kordinata:list) {
-                avg_x+=kordinata.x;
-                avg_y+=kordinata.y;
-                count++;
-            }
 
 
-            koor akt = list.get(0);
-            while (list.size()!=0)
-            {
-                akt = mintav(akt,list);
-                kord.add(akt.x*1.0);
-                kord.add(akt.y*1.0);
-                list.remove(akt);
+                koor akt = list.get(0);
+                while (list.size() != 0) {
+                    akt = mintav(akt, list);
+                    kord.add(akt.x * 1.0);
+                    kord.add(akt.y * 1.0);
+                    list.remove(akt);
+                }
+                start[start_id].x = avg_x / count;
+                start[start_id].y = avg_y / count;
+                perm = new Polygon();
+                perm.setId(String.valueOf(start_id));
+                start[start_id].ki = perm;
+                perm.getPoints().addAll(kord);
+                perm.setFill(csoportszin);
+                int finalStart_id = start_id;
+                Controller mk = Controller.getInstance();
+                perm.setOnMouseClicked(mouseEvent -> mk.mouse_click(finalStart_id));
+                kord.clear();
+                pane.getChildren().add(perm);
             }
-            start[start_id].x = avg_x/count;
-            start[start_id].y = avg_y/count;
-            perm = new Polygon();
-            perm.setId(String.valueOf(start_id));
-            start[start_id].ki = perm;
-            perm.getPoints().addAll(kord);
-            perm.setFill(csoportszin);
-            int finalStart_id = start_id;
-            Controller mk = Controller.getInstance();
-            perm.setOnMouseClicked(mouseEvent -> mk.mouse_click(finalStart_id));
-            kord.clear();
-            pane.getChildren().add(perm);
-            //pane.getChildren().add(pontok);
             start_id++;
-        }/*
-        Group nei_v = new Group();
-        Line line;
-        for(int a = 0;a<cells;a++)
-        {
-            for (int b=0;b<cells;b++)
-            {
-                if (nei[a][b])
-                {
-                    line = new Line(start[a].x, start[a].y, start[b].x, start[b].y);
-                    System.out.println(a+". szomszédos "+b+"-vel.");
-                    nei_v.getChildren().add(line);
-                }
-            }
-        }*/
-
-
-        pane.getChildren().add(panda);
-        //pane.getChildren().add(nei_v);
+        }
         return  pane;
     }
 
     public static double distance(int x1, int x2, int y1, int y2) {
         double d;
-        d = Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)); // Euclidian
-        //  d = Math.abs(x1 - x2) + Math.abs(y1 - y2); // Manhattan
-        //  d = Math.pow(Math.pow(Math.abs(x1 - x2), p) + Math.pow(Math.abs(y1 - y2), p), (1 / p)); // Minkovski
+        d = Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
         return d;
     }
 

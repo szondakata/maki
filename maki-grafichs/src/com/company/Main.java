@@ -83,10 +83,10 @@ public class Main extends Application {
 
         Random random = new Random();
         int[] randompos = new int[42];
-
-        for (int x = 0; x<42;x++)
+        boolean[] checker = new boolean[42];
+        for (int i =0;i<42;i++)
         {
-            randompos[x] = -1;
+            checker[i] = true;
         }
 
         randompos[0] = 32;//törékeny
@@ -105,12 +105,19 @@ public class Main extends Application {
         randompos[13] = 30;
         randompos[14] = 39;
 
-        for (int ixi = 15; ixi<mezok;ixi++)
+        for (int i = 0; i<15;i++)
         {
-            if (randompos[ixi]==-1) {
-                randompos[ixi] = ixi;
-            }
+            checker[randompos[i]]=false;
         }
+        int xyz;
+        for (int i = 15;i<42;i++)
+        {
+            for (xyz = 0;!checker[xyz];xyz++) {}
+            randompos[i]=xyz;
+            checker[xyz]=false;
+        }
+
+
 
         Group items = new Group();
         utasitasok utasitasok = new utasitasok();

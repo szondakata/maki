@@ -41,9 +41,10 @@ public class Panda extends Unit {
 		else{
 			move(f);
 			Field temp=getIamon();
-			die();
-			if (getHand2()!=null)
+			if (getHand2()!=null) {
 				getHand2().exit(temp);
+			}
+			die();
 		}
 		logger.depthM();
 

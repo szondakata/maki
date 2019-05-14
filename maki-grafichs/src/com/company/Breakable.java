@@ -24,7 +24,7 @@ public class Breakable extends Field {
 					f.getNei().remove(this);
 
 				}
-				setNei(null);
+				setNei(null);//TODO remove
 
 			}
 		}

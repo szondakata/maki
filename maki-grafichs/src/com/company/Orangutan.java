@@ -20,7 +20,7 @@ public class Orangutan extends Unit {
 		{
 			Field temp=getIamon();
 			int pontok = 0;
-			for(Unit u = this.getHand2();u.getHand2() != null;u = u.getHand2() )
+			for(Unit u = this;u.getHand2() != null;u = u.getHand2() )
 			{
 				pontok++;
 			}

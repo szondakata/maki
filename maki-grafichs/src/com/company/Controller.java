@@ -9,6 +9,24 @@ import java.util.ArrayList;
 
 public class Controller {
 
+    private Controller() {
+        instance = this;
+    }
+
+    Ornagutan_FX player1;
+    Ornagutan_FX player2;
+    ArrayList<Panda_FX> pandas;
+    boolean[][] nei;
+    koor[] start;
+    ArrayList<Ornagutan_FX> orangutan;
+    utasitasok utasitasok;
+    Label label;
+    Group lines;
+    static Controller instance;
+    int hol;
+    boolean egyes=false;
+    int turnCount = 0;
+
     public void setNei(boolean[][] nei) {
         this.nei = nei;
     }
@@ -16,10 +34,6 @@ public class Controller {
     public void setStart(koor[] start) {
         this.start = start;
     }
-
-    Ornagutan_FX player1;
-    Ornagutan_FX player2;
-    ArrayList<Panda_FX> pandas;
 
     public void setPlayer1(Ornagutan_FX player1) {
         this.player1 = player1;
@@ -33,54 +47,42 @@ public class Controller {
         this.pandas = pandas;
     }
 
-    boolean[][] nei;
-    koor[] start;
-
     public void setOrangutan(ArrayList<Ornagutan_FX> orangutan) {
         this.orangutan = orangutan;
     }
-
-    ArrayList<Ornagutan_FX> orangutan;
 
     public void setUtasitasok(com.company.utasitasok utasitasok) {
         this.utasitasok = utasitasok;
     }
 
-    utasitasok utasitasok;
     public void setLabel(Label label) {
         this.label = label;
     }
 
-    Label label;
-
     public void setLines(Group lines) {
         this.lines = lines;
     }
-
-    Group lines;
 
     public static Controller getInstance() {
         if (instance==null){instance=new Controller();}
         return instance;
     }
 
-    static Controller instance;
-
-    private Controller() {
-        instance = this;
-    }
-    boolean egyes=false;
-
-    int hol;
-
     public void mouse_click(int mit)
     {
             hol = Integer.parseInt(utasitasok.control.orangutans.get(( egyes ? 1 : 0)).getIamon().ID);
             if (nei[hol][mit]) {
+                turnCount++;
                 egyes = !egyes;
                 System.out.println("didit: " + String.valueOf(mit));
-                label.setText(!egyes ? "Első játékos jön!" : "Második játékos jön!");
+                update_text();
                 utasitasok.move(new String[]{"", (egyes ? "player1" : "player2"), String.valueOf(mit)});
+                if (turnCount%2==0)
+                {
+                    utasitasok.control.updateItems();
+                    utasitasok.control.movePandas();
+                }
+
             } else {
                 //valami alert hogy nem szomszédosat klikkeltél
             }
@@ -88,9 +90,16 @@ public class Controller {
         {
             utasitasok.control.move(utasitasok.control.orangutans.get(1),Entry.getInstance());
         }
+        update_breakables();
         update_pandas();
         update_orangutans();
         update_lines();
+        update_text();
+    }
+
+    private void update_text ()
+    {
+        label.setText((!egyes ? "Első játékos jön!" : "Második játékos jön!")+"\tP1: "+(utasitasok.control.getP1()==null?"0":utasitasok.control.getP1().getPoints())+" P2: "+(utasitasok.control.getP2()==null?"0":utasitasok.control.getP2().getPoints()));
     }
 
     private  void update_orangutans()
@@ -98,7 +107,7 @@ public class Controller {
         orangutan.get(0).place(start[Integer.parseInt(utasitasok.control.orangutans.get(0).getIamon().ID)]);
         if (utasitasok.control.orangutans.get(1).getIamon().ID!="fake") {
             orangutan.get(1).place(start[Integer.parseInt(utasitasok.control.orangutans.get(1).getIamon().ID)]);
-        }
+        }//TODO másol
     }
 
     private void update_pandas()
@@ -115,13 +124,6 @@ public class Controller {
         }
     }
 
-    /*public void tileBroken(int ID){
-        for (int i=0;i<nei.length)
-             ) {
-
-        }
-    }*///TODO ezt befejezni
-
     private void update_lines()
     {
         lines.getChildren().clear();
@@ -135,6 +137,22 @@ public class Controller {
                 line.setStrokeWidth(5);
                 line.setStroke(Color.BLACK);
                 lines.getChildren().add(line);
+            }
+        }
+    }
+
+    public void update_breakables()
+    {
+        for (Breakable b:utasitasok.breakable_tiles) {
+            if (b.getRemainLifetime()==0)
+            {
+                b.setRemainLifetime(-1);
+                for (int i =0; i<nei[0].length;i++ )
+                {
+                    nei[Integer.parseInt(b.ID)][i]=false;
+                    nei[i][Integer.parseInt(b.ID)]=false;
+                }
+                start[Integer.parseInt(b.ID)].ki.setStroke(Color.ORANGE);
             }
         }
     }

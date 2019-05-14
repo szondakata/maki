@@ -739,7 +739,7 @@ public class utasitasok {
             p1.setMyOran(control.orangutans.get(0));
             p2.setMyOran(control.orangutans.get(1));
             control.setP1(p1);
-            control.setP1(p2);
+            control.setP2(p2);
             control.orangutans.get(0).setMyPlayer(p1);
             control.orangutans.get(1).setMyPlayer(p2);
         }

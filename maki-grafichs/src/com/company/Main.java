@@ -243,7 +243,6 @@ public class Main extends Application {
         player1.place(start[randompos[7]]);
         utasitasok.crtunit(new String[] {"","orangutan",String.valueOf(randompos[7]),"player1"});
         utasitasok.crtunit(new String[] {"","orangutan","fake","player2"});
-
         utasitasok.player_init();
 
         items.setMouseTransparent(true);

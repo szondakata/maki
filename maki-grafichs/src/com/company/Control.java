@@ -47,7 +47,7 @@ public class Control {
         if (!End())
 		{
             for (Panda panda : pandas) { //minden panda egy a vele szomszédos mezőre lép vagy ott marad
-                if (panda.getHand1()==null) {
+                if (panda.getHand1()==null&&panda.isAlive) {
                     if (isRandom) {
                         Random rand = new Random();
                         panda.move(panda.getIamon().getNei().get(rand.nextInt(panda.getIamon().getNei().size())));

@@ -100,7 +100,15 @@ public class Controller {
 
     private void update_text ()
     {
-        label.setText((!egyes ? "Első játékos jön!" : "Második játékos jön!")+"\tP1: "+(utasitasok.control.getP1()==null?"0":utasitasok.control.getP1().getPoints())+" P2: "+(utasitasok.control.getP2()==null?"0":utasitasok.control.getP2().getPoints()));
+        if (utasitasok.control.End()&&utasitasok.control.getP2()!=null&&utasitasok.control.getP1()!=null)
+        {
+            if (utasitasok.control.getP1().getPoints()==utasitasok.control.getP2().getPoints()) {label.setText("Játék vége! \t Döntetlen.");}
+            if (utasitasok.control.getP1().getPoints()>utasitasok.control.getP2().getPoints()) {label.setText("Játék vége! \t Egyes játékos nyert.");}
+            if (utasitasok.control.getP1().getPoints()<utasitasok.control.getP2().getPoints()) {label.setText("Játék vége! \t Kettes játékos nyert.");}
+        }
+        else {
+            label.setText((!egyes ? "Első játékos jön!" : "Második játékos jön!") + "\tP1: " + (utasitasok.control.getP1() == null ? "0" : utasitasok.control.getP1().getPoints()) + " P2: " + (utasitasok.control.getP2() == null ? "0" : utasitasok.control.getP2().getPoints()));
+        }
     }
 
     private  void update_orangutans()

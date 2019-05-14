@@ -127,7 +127,7 @@ public class utasitasok {
 
         if (args.length < 2) {
 
-            System.out.println("Nincs elegendő argomentum! A parancs formátumáért próbáld:<crtunit -help> opciót");
+            System.out.println("Nincs elegendő argumentum! A parancs formátumáért próbáld:<crtunit -help> opciót");
             return;
         }
         if (args.length == 2 && args[1].equals("help")) {

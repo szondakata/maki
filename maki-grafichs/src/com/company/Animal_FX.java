@@ -2,14 +2,26 @@ package com.company;
 
 import javafx.scene.shape.Circle;
 
+/**
+ *
+ */
 public abstract class Animal_FX
 {
+    /**
+     *
+     */
     Circle animal;
 
+    /**
+     * @return
+     */
     public Circle getAnimal() {
         return animal;
     }
 
+    /**
+     * @param hova
+     */
     public void place(koor hova)
     {
         animal.setVisible(true);
@@ -17,6 +29,9 @@ public abstract class Animal_FX
         animal.setCenterY(hova.y);
     }
 
+    /**
+     *
+     */
     public void kill()
     {
         animal.setVisible(false);

@@ -3,14 +3,18 @@ package com.company;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
-public class Panda_FX extends Animal_FX
-{
+/**
+ * 
+ */
+public class Panda_FX extends Animal_FX {
+    /**
+     * @param type
+     */
     public Panda_FX(int type) {//0 sima fekete, 1 ijedős sárga, 2 ugrálós barna, 3 álmos fehér
         int graphics_ID;
-        animal = new Circle(0,0,15, Color.BLACK);
+        animal = new Circle(0, 0, 15, Color.BLACK);
         animal.setVisible(false);
-        switch (type)
-        {
+        switch (type) {
             case 0:
                 animal.setStroke(Color.BLACK);
                 break;

@@ -70,6 +70,7 @@ public class Controller {
 
     public void mouse_click(int mit)
     {
+        System.out.println("diddit: "+String.valueOf(mit));
             hol = Integer.parseInt(utasitasok.control.orangutans.get(( egyes ? 1 : 0)).getIamon().ID);
             if (nei[hol][mit]) {
                 turnCount++;

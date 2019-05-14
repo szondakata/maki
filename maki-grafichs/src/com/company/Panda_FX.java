@@ -4,7 +4,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 /**
- * 
+ *
  */
 public class Panda_FX extends Animal_FX {
     /**

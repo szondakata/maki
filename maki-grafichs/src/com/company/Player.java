@@ -1,5 +1,8 @@
 package com.company;
 
+/**
+ *
+ */
 public class Player {
 	private int points;
 	protected Logger logger;

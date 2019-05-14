@@ -25,7 +25,14 @@ public class Control {
         logger.writeMessage(this.toString()+".move("+myO.toString()+", "+ToF.toString()+")");
         if (!End()) {
             if (!myO.move(ToF)) {
-                ToF.getContain().grab(myO);//Szekvencia orángután-move else ág kiemelve
+                if (ToF == Entry.getInstance())
+                {
+                    ToF.getContain().die();
+                    myO.move(ToF);
+                }
+                else {
+                    ToF.getContain().grab(myO);//Szekvencia orángután-move else ág kiemelve
+                }
             }
         } else {
             System.out.println("A játék már véget ért!");

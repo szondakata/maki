@@ -12,16 +12,23 @@ public class Orangutan extends Unit {
 	public void exit(Field f) {
 		logger.depthP();
 		logger.writeMessage(this.toString()+".exit()");
+		Entry entry = Entry.getInstance();
+		if (entry.getContain() != null){
+			entry.getContain().die();
+		}
 		if (getHand2()!= null)
 		{
 			Field temp=getIamon();
+			int pontok = 0;
+			for(Unit u = this.getHand2();u.getHand2() != null;u = u.getHand2() )
+			{
+				pontok++;
+			}
+			myPlayer.givePoints(pontok);//1 pont cause whynot
 			getHand2().exit(temp);
-			Entry entry = Entry.getInstance();
-			entry.getContain().die();
-			move(entry);
-
-			myPlayer.givePoints(1);//6 pont cause whynot
 		}
+		this.release();
+		this.move(entry);
 		logger.depthM();
 	}
 

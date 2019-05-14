@@ -36,12 +36,11 @@ public class Panda extends Unit {
 	public void exit(Field f) {
 		logger.depthP();
 		logger.writeMessage(this.toString()+".exit()");
-		
 		if(getHand1()==null)
 			return;
 		else{
-			Field temp=getIamon();
 			move(f);
+			Field temp=getIamon();
 			die();
 			if (getHand2()!=null)
 				getHand2().exit(temp);

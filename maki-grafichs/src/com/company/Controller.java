@@ -84,7 +84,7 @@ public class Controller {
             } else {
                 //valami alert hogy nem szomszédosat klikkeltél
             }
-        if(utasitasok.control.orangutans.get(1).getIamon().ID=="fake"&& Entry.getInstance().getContain()==null)
+        if(utasitasok.control.orangutans.get(1).getIamon().ID=="fake")
         {
             utasitasok.control.move(utasitasok.control.orangutans.get(1),Entry.getInstance());
         }

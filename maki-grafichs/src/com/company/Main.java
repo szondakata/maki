@@ -191,6 +191,9 @@ public class Main extends Application {
         player1.place(start[randompos[7]]);
         utasitasok.crtunit(new String[] {"","orangutan",String.valueOf(randompos[7]),"player1"});
         utasitasok.crtunit(new String[] {"","orangutan","fake","player2"});
+
+        utasitasok.player_init();
+
         items.setMouseTransparent(true);
         pane.getChildren().add(lines);
         pane.getChildren().add(items);
@@ -199,7 +202,6 @@ public class Main extends Application {
 
         //Displaying the contents of the stage
         primaryStage.show();
-        utasitasok.listtiles();
     }
 
 

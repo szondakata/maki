@@ -726,6 +726,25 @@ public class utasitasok {
         System.out.println("Test succesful!"); //TODO rendesen implementálni
     }
 
+    public void player_init()
+    {
+        if (control.orangutans.size()!=2)
+        {
+            System.out.println("Nem megfelelő orángután mennyiség!");
+        }
+        else
+        {
+            Player p1 = new Player();
+            Player p2 = new Player();
+            p1.setMyOran(control.orangutans.get(0));
+            p2.setMyOran(control.orangutans.get(1));
+            control.setP1(p1);
+            control.setP1(p2);
+            control.orangutans.get(0).setMyPlayer(p1);
+            control.orangutans.get(1).setMyPlayer(p2);
+        }
+    }
+
     /** A fuggveny a parameterben kapott ket szekrenyt osszekoti
      * @param args -az egyik szekreny ID-ja -a masik szekreny ID-ja
      */

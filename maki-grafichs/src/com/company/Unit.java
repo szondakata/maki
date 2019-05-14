@@ -77,6 +77,7 @@ public Field getIamon() {
 			getIamon().setContain(null);
 
 		setIamon(null);
+
 		this.release();
 
 		this.setAlive(false);

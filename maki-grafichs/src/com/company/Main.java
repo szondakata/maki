@@ -71,6 +71,7 @@ public class Main extends Application {
         Pane label_pane = new Pane(label);
         label_pane.setPrefSize(1200,25);
         label_pane.setMaxSize(1200,25);
+        label_pane.setMinSize(1200,25);
         Controller.getInstance().setLabel(label);
         //label.setVisible(false);
         Scene scene = new Scene(split_pane);
@@ -96,8 +97,13 @@ public class Main extends Application {
         randompos[10] = 20;
         randompos[11] = 11;
         randompos[12] = 38;
-        randompos[12] = 30;
+        randompos[13] = 30;
         randompos[14] = 39;
+
+        for (int ixi = 15; ixi<mezok;ixi++)
+        {
+            randompos[ixi]=ixi;
+        }
 
         Group items = new Group();
         utasitasok utasitasok = new utasitasok();

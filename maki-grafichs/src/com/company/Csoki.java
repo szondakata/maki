@@ -2,9 +2,12 @@ package com.company;
 
 import java.util.Random;
 
+<<<<<<< HEAD
 /**
  * A csokiautomata működéséért felelős osztály
  */
+=======
+>>>>>>> parent of 69c0ab9... Merge branch 'master-baszó' of https://github.com/szondakata/maki into master-baszó
 public class Csoki extends Field {
 
 	/**

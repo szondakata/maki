@@ -1,11 +1,9 @@
 package com.company;
 
 
-/**
- * A függvényhívásokat jeleníti meg a standard outputon
- */
 public class Logger {
 
+<<<<<<< HEAD
     /**
      * Indentálásért felelős változó
      */
@@ -17,6 +15,13 @@ public class Logger {
      *
      * @return indentálás jelenlegi mélysége
      */
+=======
+
+    private static int depth = -1;
+
+
+
+>>>>>>> parent of 69c0ab9... Merge branch 'master-baszó' of https://github.com/szondakata/maki into master-baszó
     public static int getDepth() {
         return depth;
     }
@@ -30,6 +35,7 @@ public class Logger {
         depth = dep;
     }
 
+<<<<<<< HEAD
     /**
      * A jelenlegi indentálás mélységét növeli
      */
@@ -52,6 +58,25 @@ public class Logger {
     public static void writeMessage(String message) {
         for (int i = 0; i < depth; i++)
             System.out.print("\t");
-        System.out.println(message);
+=======
+    public static void depthP()
+    {
+        depth++;
     }
+    public static void depthM()
+    {
+        depth--;
+    }
+
+    public static void writeMessage(String message) {
+ 
+       for(int i =0; i<depth;i++)
+           System.out.print("\t");
+>>>>>>> parent of 69c0ab9... Merge branch 'master-baszó' of https://github.com/szondakata/maki into master-baszó
+        System.out.println(message);
+
+    }
+
+
+
 }

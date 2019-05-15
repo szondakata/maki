@@ -24,8 +24,6 @@ public class Breakable extends Field {
 					f.getNei().remove(this);
 
 				}
-				setNei(null);//TODO remove
-
 			}
 		}
 		logger.depthM();

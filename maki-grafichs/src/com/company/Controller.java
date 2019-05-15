@@ -7,62 +7,76 @@ import javafx.scene.shape.Line;
 
 import java.util.ArrayList;
 
+/**
+ * Singleton osztály az eseménykezelésért és a modell és a view közötti kapcsolat
+ * megteremtéséért felelős.
+ */
 public class Controller {
 
+    /**
+     * Singleton példány
+     */
+    static Controller instance;
+    /**
+     * A player 1-hez tartozó orángután grafikus megjelenítéséért felelős függvények
+     */
+    Ornagutan_FX player1;
+    /**
+     * A player 2-hez tartozó orángután grafikus megjelenítéséért felelős függvények
+     */
+    Ornagutan_FX player2;
+    /**
+     * Pandák grafikus példányai megjelenítéséért felelős függvények
+     */
+    ArrayList<Panda_FX> pandas;
+    /**
+     * A játéktábla csempéinek szpmszédsági mátrixa
+     */
+    boolean[][] nei;
+    /**
+     * A cellák középpontjainak a koordinátái
+     */
+    koor[] start;
+    /**
+     * Orángutánok grafikus példányainak a tömbje
+     */
+    ArrayList<Ornagutan_FX> orangutan;
+    /**
+     * Utasítások osztály mellyel a control a modellel kommunikál
+     */
+    utasitasok utasitasok;
+    /**
+     * A felső label ami a szövegeket tárolja
+     */
+    Label label;
+    /**
+     * Az összekötött pandák és orángutánok közti vonalak
+     */
+    Group lines;
+    /**
+     * Az éppen aktuális orángután tartózkodási helye index szerint
+     */
+    int hol;
+    /**
+     * Melyik orángután következik épp
+     */
+    boolean egyes = false;
+    /**
+     * Körszámláló
+     */
+    int turnCount = 0;
+
+    /**
+     * Singletonhoz szükséges privát konstruktor
+     */
     private Controller() {
         instance = this;
     }
 
-    Ornagutan_FX player1;
-    Ornagutan_FX player2;
-    ArrayList<Panda_FX> pandas;
-    boolean[][] nei;
-    koor[] start;
-    ArrayList<Ornagutan_FX> orangutan;
-    utasitasok utasitasok;
-    Label label;
-    Group lines;
-    static Controller instance;
-    int hol;
-    boolean egyes = false;
-    int turnCount = 0;
-
-    public void setNei(boolean[][] nei) {
-        this.nei = nei;
-    }
-
-    public void setStart(koor[] start) {
-        this.start = start;
-    }
-
-    public void setPlayer1(Ornagutan_FX player1) {
-        this.player1 = player1;
-    }
-
-    public void setPlayer2(Ornagutan_FX player2) {
-        this.player2 = player2;
-    }
-
-    public void setPandas(ArrayList<Panda_FX> pandas) {
-        this.pandas = pandas;
-    }
-
-    public void setOrangutan(ArrayList<Ornagutan_FX> orangutan) {
-        this.orangutan = orangutan;
-    }
-
-    public void setUtasitasok(com.company.utasitasok utasitasok) {
-        this.utasitasok = utasitasok;
-    }
-
-    public void setLabel(Label label) {
-        this.label = label;
-    }
-
-    public void setLines(Group lines) {
-        this.lines = lines;
-    }
-
+    /**
+     * A controller példány visszadásáért felelős függvény
+     * @return visszadja a contoller példányt
+     */
     public static Controller getInstance() {
         if (instance == null) {
             instance = new Controller();
@@ -70,9 +84,92 @@ public class Controller {
         return instance;
     }
 
+    /**
+     * Szomszédsági mátrix beállításáért felelős setter függvény
+     * @param nei boolean tömb szomszédsági mátrix
+     */
+    public void setNei(boolean[][] nei) {
+        this.nei = nei;
+    }
+
+    /**
+     * Start beállításáért felelős setter függvény
+     * @param start koor tipusú kezdőpontok
+     */
+    public void setStart(koor[] start) {
+        this.start = start;
+    }
+
+    /**
+     * Setter függvény ami az egyes playerhez tartozó orángután beállításáért felelős
+     * @param player1 erre állítjuk be a player 1 attribútumot
+     */
+    public void setPlayer1(Ornagutan_FX player1) {
+        this.player1 = player1;
+    }
+
+    /**
+     *  Setter függvény ami az 2 playerhez tartozó orángután beállításáért felelős
+     * @param player2 erre állítjuk be a player 1 attribútumot
+     */
+    public void setPlayer2(Ornagutan_FX player2) {
+        this.player2 = player2;
+    }
+
+    /**
+     * Panda tömb beállításáért felelős függvény
+     * @param pandas beállítani kívánt grafikus panda tömb
+     */
+    public void setPandas(ArrayList<Panda_FX> pandas) {
+        this.pandas = pandas;
+    }
+
+    /**
+     * orángután tömb beállításáért felelős függvény
+     * beállítani kívánt grafikus orángután tömb
+     * @param orangutan
+     */
+    public void setOrangutan(ArrayList<Ornagutan_FX> orangutan) {
+        this.orangutan = orangutan;
+    }
+
+    /** Utasítások beállításra hivatott setter függvény
+     * @param utasitasok beáálítani kívánt utasítások referencia
+     */
+    public void setUtasitasok(com.company.utasitasok utasitasok) {
+        this.utasitasok = utasitasok;
+    }
+
+    /** Label beállításra hivattot setter függvény
+     * @param label beállítani kívánt label
+     */
+    public void setLabel(Label label) {
+        this.label = label;
+    }
+
+    /**
+     * Az összefűzott állatok közti vonalak beállításra szolgáló függvény
+     * @param lines beállítani kívánt vonalak tömb
+     */
+    public void setLines(Group lines) {
+        this.lines = lines;
+    }
+
+    /**
+     * Mouse clik eseményre reagálló függvény amelyben
+     * a játékosok léptethetik az orángutánokat
+     * lehetséges lépés esetén a következő player jön
+     * nem lehetséges lépés esetén továbbra is a jelenlegi
+     * player következik
+     * A lépés végén meghívja a view frissítésére szolgáló metódusait
+     * nem lehetséges lépés esetén a std outpura figyelmezettést ír ki
+     * @param mit Kattinatott cella indexe
+     */
     public void mouse_click(int mit) {
         System.out.println("diddit: " + String.valueOf(mit));
-        if (utasitasok.control.End()){return;}
+        if (utasitasok.control.End()) {
+            return;
+        }
         hol = Integer.parseInt(utasitasok.control.orangutans.get((egyes ? 1 : 0)).getIamon().ID);
         if (nei[hol][mit]) {
             System.out.println("didit: " + String.valueOf(mit));
@@ -86,13 +183,11 @@ public class Controller {
                     utasitasok.control.movePandas();
                 }
             }
-
-
-            if (utasitasok.control.orangutans.get(1).getIamon()!=null&&utasitasok.control.orangutans.get(1).getIamon().ID == "fake") {
+            if (utasitasok.control.orangutans.get(1).getIamon() != null && utasitasok.control.orangutans.get(1).getIamon().ID == "fake") {
                 utasitasok.control.move(utasitasok.control.orangutans.get(1), Entry.getInstance());
             }
         } else {
-            //valami alert hogy nem szomszédosat klikkeltél
+            System.out.println("Lépés nem lehetséges, a mezők nem szomszédosak"); //valami alert hogy nem szomszédosat klikkeltél
         }
         update_breakables();
         update_pandas();
@@ -101,6 +196,11 @@ public class Controller {
         update_lines();
     }
 
+    /**
+     *  A labelben lévő szövegdobozok frissítésre szolgáló metódus
+     *  kiírja a játékosk jelenlegi pontjait
+     *  A játék végén kiírja hogy melyik fél győzőtt
+     */
     private void update_text() {
         if (utasitasok.control.End()) {
             if (utasitasok.control.getP1().getPoints() == utasitasok.control.getP2().getPoints()) {
@@ -117,20 +217,30 @@ public class Controller {
         }
     }
 
+    /**
+     * Orángutánok grafikus frissétésére szolgáló metódus
+     * Ha meghal az egyik akkor leveszi a viewről
+     */
     private void update_orangutans() {
-        if (utasitasok.control.orangutans.get(0).isAlive&&utasitasok.control.orangutans.get(1).isAlive) {
+        if (utasitasok.control.orangutans.get(0).isAlive && utasitasok.control.orangutans.get(1).isAlive) {
             orangutan.get(0).place(start[Integer.parseInt(utasitasok.control.orangutans.get(0).getIamon().ID)]);
             if (utasitasok.control.orangutans.get(1).getIamon().ID != "fake") {
                 orangutan.get(1).place(start[Integer.parseInt(utasitasok.control.orangutans.get(1).getIamon().ID)]);
             }
-        }
-        else
-        {
-            if (!utasitasok.control.orangutans.get(0).isAlive){orangutan.get(0).kill();}
-            if (!utasitasok.control.orangutans.get(1).isAlive){orangutan.get(1).kill();}
+        } else {
+            if (!utasitasok.control.orangutans.get(0).isAlive) {
+                orangutan.get(0).kill();
+            }
+            if (!utasitasok.control.orangutans.get(1).isAlive) {
+                orangutan.get(1).kill();
+            }
         }
     }
 
+    /**
+     * Pandák grafikus frissétésére szolgáló metódus
+     * Ha meghal az egyik akkor leveszi a viewről
+     */
     private void update_pandas() {
         for (Panda p : utasitasok.control.pandas) {
             StringBuilder sb = new StringBuilder(p.ID);
@@ -143,6 +253,10 @@ public class Controller {
         }
     }
 
+    /**
+     * Pandák grafikus frissétésére szolgáló metódus.
+     * Ha egy összeköttetés megszűnik, akkor leveszi a viewról.
+     */
     private void update_lines() {
         lines.getChildren().clear();
         for (int i = 0; i < 2; i++) {
@@ -159,6 +273,10 @@ public class Controller {
         }
     }
 
+    /**
+     * Törhető mezők frissítésére szolgáló metódus.
+     * Ha a mező eltröik, a körvonala narancssárga lesz.
+     */
     public void update_breakables() {
         for (Breakable b : utasitasok.breakable_tiles) {
             if (b.getRemainLifetime() == 0) {
@@ -171,5 +289,4 @@ public class Controller {
             }
         }
     }
-
 }

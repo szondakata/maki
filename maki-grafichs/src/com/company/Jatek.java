@@ -2,10 +2,19 @@ package com.company;
 import java.util.Random;
 
 
-
+/**
+ * A játékautomatát és az alatta lévő csempét megvalósító osztály
+ */
 public class Jatek extends Field {
-
+	/**
+	 * Randomszámgenerátor
+	 */
 	Random rand = new Random();
+
+	/**
+	 * A játékautomata egynél kisebb valószínűséggel sípol (értesíti a rajta és szomszédain
+	 * álló egységeket, hogy sípol)
+	 */
 	public void Update() {
 		logger.depthP();
 		logger.writeMessage(this.toString()+".Update()");

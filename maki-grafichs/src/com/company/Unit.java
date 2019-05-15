@@ -77,8 +77,8 @@ public abstract class Unit implements Action {
         this.hand1 = hand1;
     }
 
-    /**
-     * @return
+    /** Az egység hátsó mancsát lekérdező függvény
+     * @return az egység hátsó mancsában lévő egység
      */
     public Unit getHand2() {
         logger.depthP();
@@ -87,8 +87,8 @@ public abstract class Unit implements Action {
         return hand2;
     }
 
-    /**
-     * @param hand2
+    /** Az egység második mancsába a paraméterben kapott egységet helyezi.
+     * @param hand2 az egység
      */
     public void setHand2(Unit hand2) {
         logger.depthP();
@@ -97,7 +97,7 @@ public abstract class Unit implements Action {
         this.hand2 = hand2;
     }
 
-    /**
+    /** Az egység elkap egy másikat
      * @param u
      */
     public void grab(Unit u) {
@@ -106,7 +106,7 @@ public abstract class Unit implements Action {
         logger.depthM();
     } //Üres osztály
 
-    /**
+    /** Az egység elhagyja a pályát
      * @param field
      */
     public void exit(Field field) {
@@ -116,7 +116,7 @@ public abstract class Unit implements Action {
     }
 
     /**
-     *
+     * Az egység meghal, a jelenlegi csempáje null, a szomszédait elengedi, és az élet-flagje false lesz
      */
     public void die() {
         logger.depthP();
@@ -131,12 +131,10 @@ public abstract class Unit implements Action {
     }
 
 
-    /**
-     * @param f
-     * @return
+    /** Az egység a paraméterben kapott csempére kísérel meg lépni
+     * @param f a csempe
+     * @return true, ha a mozgás végbement, false, ha nem sikerült, mert a mező fogglalt.
      */
-    //Field f: ahová mozog az egység
-    //Mozgást valósít meg false-al tér vissza ha olyan mezőre próbál lépni ami foglalt
     public boolean move(Field f) {
         logger.depthP();
         logger.writeMessage(this.toString() + ".move(" + f.toString() + ")");
@@ -154,19 +152,17 @@ public abstract class Unit implements Action {
             if (flag) {
                 this.setIamon(f);
             }
-
             return true;
         } else {
             logger.depthM();
             return false;
         }
     }
-
-
+    
     /**
-     *
+     * A sor felbomlásáért felelős függvény. Az egység elengedi az előtte majd a mögötte álló egységet,
+     * és szól a mögötte állónak, hogy ő is engedje el a szomszédait.
      */
-    //A sor felbomlásáért felelős osztály
     public void release() {
         logger.depthP();
         logger.writeMessage(this.toString() + ".release()");
@@ -180,8 +176,8 @@ public abstract class Unit implements Action {
         logger.depthM();
     }
 
-    /**
-     * @return
+    /** A függvénnyel lekérdezhető, hogy az egység életben van-e
+     * @return true, ha az egység életben van, false ha halott.
      */
     public boolean isAlive() {
         logger.depthP();
@@ -190,8 +186,8 @@ public abstract class Unit implements Action {
         return isAlive;
     }
 
-    /**
-     * @param alive
+    /** A függvény beállítja a paraméterben kapott értékre, hogy az egység életben van-e
+     * @param alive a beállítandó érték
      */
     public void setAlive(boolean alive) {
         logger.depthP();

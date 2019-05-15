@@ -2,6 +2,9 @@ package com.company;
 
 import java.util.Random;
 
+/**
+ *
+ */
 public class Csoki extends Field {
 
 	Random rand = new Random();

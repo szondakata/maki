@@ -3,6 +3,9 @@ package com.company;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * A játékot mozgató modell logikáját és adatait tartalmazó osztály
+ */
 public class Control {
     /**
      * A véletlen játékmód flagje

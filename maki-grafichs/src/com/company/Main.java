@@ -20,9 +20,25 @@ import java.util.Random;
 
 public class Main extends Application {
 
+    /**
+     * A szomszédságot ábrázoló kétdimenziós boolean tömb.
+     */
     boolean[][] nei;
+
+    /**
+     * A kirajzoláshoz szükséges koordinátákat tartalmazó tömb.
+     * Tartalma a helyiértékekkel megegyező ID-u Tile középpontja.
+     */
     koor[] start;
 
+    /**
+     * Ez a függvény indítja a grafikus felületeket.
+     *
+     *  Létrehozunk egy Scene-t amire kirajzoljuk a menüt, hozzá adjuk a gombokat, a gombok event-jeit beállítjuk, majd megjelenítjük Scene-t.
+     *  A button1 lenyomásakor átváltunk a RandomMap Scene-re.
+     *  A button2 lenyomásakor átváltunk a TestMap Scene-re.
+     *  A button3 lenyomásakor kilépünk az alkalmazásból.
+     */
     @Override
     public void start(Stage primaryStage) throws Exception{
 
@@ -47,8 +63,43 @@ public class Main extends Application {
         primaryStage.show();
     }
 
+    /**
+     * A függvény létrehozza a Teszt pályát minden elemével együtt.
+     *
+     * A kód működése:
+     *  (1).Mezők inicializálása
+     *      Egy statikus tömből a Map_FX osztály segítségével legeneráltatjuk a pályát.
+     *      Megkapjuk a szomszédsági mátrixot, és a start tömböt.
+     *
+     *  (2).Layout inicializálása
+     *      Létrehozzuk a Layout-ot ami a pálya mellett megjeleníti a játék állapotáról tájékoztató szöveget.
+     *
+     *  (3).A megadott tárgyak pozícióinak kijelölése
+     *      A megadott tárgyakat az előre meghatározott id-k és helyek alapján feltöltjük a segédtömböt,
+     *      az első 14 helyet kézzel, a többit egy algoritmussal töltjük fel.
+     *
+     *  (4).Tárgyak és Állatok létrehozása
+     *      Először is létrehozzuk a megjelenítéshez szükséges Group-okat.
+     *      A sima mezők létrehozása a modellben.
+     *      A két törékeny mező létrehozása a modellben és igazítás a nézetben.
+     *      A két orángután nézet beli létrehozása.
+     *      Pandák létrehozása a nézetben és a modellben.
+     *      A csokiautómata, a fotel, a játék, a két szekrény és a be-,kijárat létrehozása a modellben és a nézetben.
+     *      A mezők szomszédságának létrehozása a modellben.
+     *      A két szekrény összekötése.
+     *      A létrehozott objektumok dokumentálása a modellben.
+     *      Az orángutánok létrehozása a modellben.
+     *
+     *  (5).Befejezés
+     *      Utolsó mozzanatként beállítjuk az egér kattintás kezelését módosító változót,
+     *      és hozzáadjuk a létrehozott csoportokat a vásznunkhoz.
+     *      Majd visszatérünk.
+     *
+     * @return A Teszt pálya létrehozott Scene-vel tér vissza.
+     */
     public Scene TestMap()
     {
+        //(1).
         int[] points_unformed = {193,310,200,158,296,190,346,272,341,376,277,450,182,480,85,441,500,330,412,197,508,174,604,209,711,338,707,180,804,218,860,299,855,400,792,477,695,504,595,466,493,492,396,457,335,532,432,569,411,671,333,631,237,540,591,630,747,584,741,684,842,658,938,692,850,558,945,593,913,482,1005,516,1106,491,1011,359,926,224,1022,201,965,113,864,139,124,178,160,91, 255,100,351,194,327,130,411,133,464,116,566,111,613,118,662,105,763,134,793,106,836,87,885,66,970,49,1042,90,1071,147,1090,224,1147,312,1161,388,1144,427,1178,513,1140,568,1096,564,1058,582,1033,616,1026,672,1021,727,991,762,914,773,873,742,845,731,817,731,772,751,713,762,694,736,644,753,590,769,541,762,491,726,444,742,398,755,378,725,327,708,269,708,250,658,208,638,168,608,149,560,119,518,57,514,15,472,33,385,35,331,51,262,81,206,751,524,796,619,899,629,944,531,854,463,336,437,238,500,278,603,389,618,430,506,863,237,946,190};
         int mezok=42;
         koor[] pontoka = new koor[points_unformed.length/2];
@@ -63,7 +114,7 @@ public class Main extends Application {
 
         nei = mf.getNei();
         start = mf.getStart();
-
+        //(2).
         SplitPane split_pane = new SplitPane();
         split_pane.setOrientation(Orientation.VERTICAL);
         Pane pane = mf.draw();
@@ -81,6 +132,7 @@ public class Main extends Application {
         split_pane.getItems().add(label_pane);
         split_pane.getItems().add(pane);
 
+        //(3).
         Random random = new Random();
         int[] randompos = new int[42];
         boolean[] checker = new boolean[42];
@@ -118,7 +170,7 @@ public class Main extends Application {
         }
 
 
-
+        //(4).
         Group items = new Group();
         utasitasok utasitasok = new utasitasok();
         Controller.getInstance().setUtasitasok(utasitasok);
@@ -244,20 +296,54 @@ public class Main extends Application {
         utasitasok.crtunit(new String[] {"","orangutan",String.valueOf(randompos[7]),"player1"});
         utasitasok.crtunit(new String[] {"","orangutan","fake","player2"});
         utasitasok.player_init();
-
+        //(5).
         items.setMouseTransparent(true);
         pane.getChildren().add(lines);
         pane.getChildren().add(items);
         return scene;
     }
 
+    /**
+     * A függvény létrehoz egy Random pályát minden elemével együtt.
+     *
+     * A kód működése:
+     *  (1).Mezők inicializálása
+     *      A Map_FX osztály segítségével generálunk egy pályát.
+     *      Megkapjuk a szomszédsági mátrixot, és a start tömböt.
+     *
+     *  (2).Layout inicializálása
+     *      Létrehozzuk a Layout-ot ami a pálya mellett megjeleníti a játék állapotáról tájékoztató szöveget.
+     *
+     *  (3).A tárgyak pozícióinak kijelölése
+     *      Létrehozunk egy random sorrendű segédtömböt a meglévő helyekből.
+     *
+     *  (4).Tárgyak és Állatok létrehozása
+     *      Először is létrehozzuk a megjelenítéshez szükséges Group-okat.
+     *      A sima mezők létrehozása a modellben.
+     *      A két törékeny mező létrehozása a modellben és igazítás a nézetben.
+     *      A két orángután nézet beli létrehozása.
+     *      Pandák létrehozása a nézetben és a modellben.
+     *      A csokiautómata, a fotel, a játék, a két szekrény és a be-,kijárat létrehozása a modellben és a nézetben.
+     *      A mezők szomszédságának létrehozása a modellben.
+     *      A két szekrény összekötése.
+     *      A létrehozott objektumok dokumentálása a modellben.
+     *      Az orángutánok létrehozása a modellben.
+     *
+     *  (5).Befejezés
+     *      Utolsó mozzanatként beállítjuk az egér kattintás kezelését módosító változót,
+     *      és hozzáadjuk a létrehozott csoportokat a vásznunkhoz.
+     *      Majd visszatérünk.
+     *
+     * @return A Teszt pálya létrehozott Scene-vel tér vissza.
+     */
     public Scene RandomMap()
     {
+        //(1).
         int mezok =42;
         Map_FX mf = new Map_FX(mezok,1200,600);
         nei = mf.getNei();
         start = mf.getStart();
-
+        //(2).
         SplitPane split_pane = new SplitPane();
         split_pane.setOrientation(Orientation.VERTICAL);
         Pane pane = mf.draw();
@@ -275,7 +361,7 @@ public class Main extends Application {
         split_pane.getItems().add(pane);
         //Setting the title to Stage.
 
-
+        //(3).
         int[] randompos = new int[mezok];
         Random random = new Random();
         int actual= -1;
@@ -296,7 +382,7 @@ public class Main extends Application {
             randompos[i]=actual;
         }
 
-
+        //(4).
         Group items = new Group();
         utasitasok utasitasok = new utasitasok();
         Controller.getInstance().setUtasitasok(utasitasok);
@@ -423,7 +509,7 @@ public class Main extends Application {
         utasitasok.crtunit(new String[] {"","orangutan","fake","player2"});
 
         utasitasok.player_init();
-
+        //(5).
         items.setMouseTransparent(true);
         pane.getChildren().add(lines);
         pane.getChildren().add(items);

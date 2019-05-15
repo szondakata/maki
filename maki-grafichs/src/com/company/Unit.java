@@ -1,27 +1,55 @@
 package com.company;
 
 
+/**
+ * A játékban szereplő egységek absztrakt ősosztálya
+ */
 public abstract class Unit implements Action {
 
+    /**
+     * Az egység ID-ja
+     */
     public String ID;
+    /**
+     * Logger osztály
+     */
     protected Logger logger;
+    /**
+     * Az egység életben van-e flag
+     */
     boolean isAlive = true;
+    /**
+     * Az egység jelenlegi csempéje, amin áll
+     */
     private Field iamon;//Melyik mezőn vagyok
+    /**
+     * Az egység előre mutató mancsa
+     */
     private Unit hand1;//"Hátra" mutató kéz
+    /**
+     * Az egység hátra mutató mancsa
+     */
     private Unit hand2;//"Előre" mutató kéz
-
+    /**
+     * Konstruktor, amely létrehoz egy loggert
+     */
     public Unit() {
         logger = new Logger();
     }
 
+    /** Az egység jelenlegi csempéjét lekérdező függvény
+     * @return az egység jelenlegi csempéje
+     */
     public Field getIamon() {
         logger.depthP();
         logger.writeMessage(this.toString() + ".getIamon()");
         logger.depthM();
         return iamon;
-
     }
 
+    /** Az egység jelenlegi csempéjét a paraméterben kapottra beállító függvény.
+     * @param iamon a csempe
+     */
     public void setIamon(Field iamon) {
         logger.depthP();
         logger.writeMessage(this.toString() + ".setIamon(" + (iamon == null ? "null" : iamon.toString()) + ")");
@@ -29,22 +57,29 @@ public abstract class Unit implements Action {
         this.iamon = iamon;
     }
 
+    /** Az egység első mancsában lévő egységet visszaadó függvény
+     * @return az egység előtt menő egység
+     */
     public Unit getHand1() {
-
         logger.depthP();
         logger.writeMessage(this.toString() + ".getHand1()");
         logger.depthM();
         return hand1;
     }
 
+    /** Az egység első mancsába a paraméterben kapott egységet helyezi.
+     * @param hand1 az egység
+     */
     public void setHand1(Unit hand1) {
-
         logger.depthP();
         logger.writeMessage(this.toString() + ".setHand1(" + hand1 + ")");
         logger.depthM();
         this.hand1 = hand1;
     }
 
+    /**
+     * @return
+     */
     public Unit getHand2() {
         logger.depthP();
         logger.writeMessage(this.toString() + ".getHand2()");
@@ -52,6 +87,9 @@ public abstract class Unit implements Action {
         return hand2;
     }
 
+    /**
+     * @param hand2
+     */
     public void setHand2(Unit hand2) {
         logger.depthP();
         logger.writeMessage(this.toString() + ".setHand2(" + hand2 + ")");
@@ -59,19 +97,27 @@ public abstract class Unit implements Action {
         this.hand2 = hand2;
     }
 
-
+    /**
+     * @param u
+     */
     public void grab(Unit u) {
         logger.depthP();
         logger.writeMessage(this.toString() + ".grab(" + u.toString() + ")");
         logger.depthM();
     } //Üres osztály
 
+    /**
+     * @param field
+     */
     public void exit(Field field) {
         logger.depthP();
         logger.writeMessage(this.toString() + ".exit(" + (field == null ? "Null" : field.toString()) + ")");
         logger.depthM();
     }
 
+    /**
+     *
+     */
     public void die() {
         logger.depthP();
         logger.writeMessage(this.toString() + ".die()");
@@ -80,14 +126,15 @@ public abstract class Unit implements Action {
             getIamon().setContain(null);
         }
         setIamon(null);
-
         this.release();
-
         this.setAlive(false);
-
     }
 
 
+    /**
+     * @param f
+     * @return
+     */
     //Field f: ahová mozog az egység
     //Mozgást valósít meg false-al tér vissza ha olyan mezőre próbál lépni ami foglalt
     public boolean move(Field f) {
@@ -116,6 +163,9 @@ public abstract class Unit implements Action {
     }
 
 
+    /**
+     *
+     */
     //A sor felbomlásáért felelős osztály
     public void release() {
         logger.depthP();
@@ -130,6 +180,9 @@ public abstract class Unit implements Action {
         logger.depthM();
     }
 
+    /**
+     * @return
+     */
     public boolean isAlive() {
         logger.depthP();
         logger.writeMessage(this.toString() + ".isAlive()" + ")");
@@ -137,6 +190,9 @@ public abstract class Unit implements Action {
         return isAlive;
     }
 
+    /**
+     * @param alive
+     */
     public void setAlive(boolean alive) {
         logger.depthP();
         logger.writeMessage(this.toString() + "setAlive(" + alive + ")");

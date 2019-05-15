@@ -105,8 +105,8 @@ public class utasitasok {
                 System.out.println("A mezőn már tartózkodik egy egység!");
                 return;
             }
-            unit.setIamon(needed);
             needed.setContain(unit);
+            unit.setIamon(needed);
         }
 
         if (args[1].equals("orangutan")) {

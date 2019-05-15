@@ -24,7 +24,7 @@ public class Controller {
     Group lines;
     static Controller instance;
     int hol;
-    boolean egyes = false;
+    boolean egyes=false;
     int turnCount = 0;
 
     public void setNei(boolean[][] nei) {
@@ -64,88 +64,78 @@ public class Controller {
     }
 
     public static Controller getInstance() {
-        if (instance == null) {
-            instance = new Controller();
-        }
+        if (instance==null){instance=new Controller();}
         return instance;
     }
 
-    public void mouse_click(int mit) {
-        System.out.println("diddit: " + String.valueOf(mit));
-        if (utasitasok.control.End()){return;}
-        hol = Integer.parseInt(utasitasok.control.orangutans.get((egyes ? 1 : 0)).getIamon().ID);
-        if (nei[hol][mit]) {
-            System.out.println("didit: " + String.valueOf(mit));
-            update_text();
-            utasitasok.move(new String[]{"", (!egyes ? "player1" : "player2"), String.valueOf(mit)});
-            if (!utasitasok.control.orangutans.get((!egyes ? 1 : 0)).getIamon().ID.equals(String.valueOf(mit))) {
-
+    public void mouse_click(int mit)
+    {
+        System.out.println("diddit: "+String.valueOf(mit));
+            hol = Integer.parseInt(utasitasok.control.orangutans.get(( egyes ? 1 : 0)).getIamon().ID);
+            if (nei[hol][mit]) {
+                turnCount++;
                 egyes = !egyes;
-                if (!egyes) {
+                System.out.println("didit: " + String.valueOf(mit));
+                update_text();
+                utasitasok.move(new String[]{"", (egyes ? "player1" : "player2"), String.valueOf(mit)});
+                if (turnCount%2==0)
+                {
                     utasitasok.control.updateItems();
                     utasitasok.control.movePandas();
                 }
-            }
 
-
-            if (utasitasok.control.orangutans.get(1).getIamon()!=null&&utasitasok.control.orangutans.get(1).getIamon().ID == "fake") {
-                utasitasok.control.move(utasitasok.control.orangutans.get(1), Entry.getInstance());
+            } else {
+                //valami alert hogy nem szomszédosat klikkeltél
             }
-        } else {
-            //valami alert hogy nem szomszédosat klikkeltél
+        if(utasitasok.control.orangutans.get(1).getIamon().ID=="fake")
+        {
+            utasitasok.control.move(utasitasok.control.orangutans.get(1),Entry.getInstance());
         }
         update_breakables();
         update_pandas();
-        update_text();
         update_orangutans();
         update_lines();
+        update_text();
     }
 
-    private void update_text() {
-        if (utasitasok.control.End()) {
-            if (utasitasok.control.getP1().getPoints() == utasitasok.control.getP2().getPoints()) {
-                label.setText("Játék vége! \t Döntetlen.");
-            }
-            if (utasitasok.control.getP1().getPoints() > utasitasok.control.getP2().getPoints()) {
-                label.setText("Játék vége! \t Egyes játékos nyert.");
-            }
-            if (utasitasok.control.getP1().getPoints() < utasitasok.control.getP2().getPoints()) {
-                label.setText("Játék vége! \t Kettes játékos nyert.");
-            }
-        } else {
+    private void update_text ()
+    {
+        if (utasitasok.control.End()&&utasitasok.control.getP2()!=null&&utasitasok.control.getP1()!=null)
+        {
+            if (utasitasok.control.getP1().getPoints()==utasitasok.control.getP2().getPoints()) {label.setText("Játék vége! \t Döntetlen.");}
+            if (utasitasok.control.getP1().getPoints()>utasitasok.control.getP2().getPoints()) {label.setText("Játék vége! \t Egyes játékos nyert.");}
+            if (utasitasok.control.getP1().getPoints()<utasitasok.control.getP2().getPoints()) {label.setText("Játék vége! \t Kettes játékos nyert.");}
+        }
+        else {
             label.setText((!egyes ? "Első játékos jön!" : "Második játékos jön!") + "\tP1: " + (utasitasok.control.getP1() == null ? "0" : utasitasok.control.getP1().getPoints()) + " P2: " + (utasitasok.control.getP2() == null ? "0" : utasitasok.control.getP2().getPoints()));
         }
     }
 
-    private void update_orangutans() {
-        if (utasitasok.control.orangutans.get(0).isAlive&&utasitasok.control.orangutans.get(1).isAlive) {
-            orangutan.get(0).place(start[Integer.parseInt(utasitasok.control.orangutans.get(0).getIamon().ID)]);
-            if (utasitasok.control.orangutans.get(1).getIamon().ID != "fake") {
-                orangutan.get(1).place(start[Integer.parseInt(utasitasok.control.orangutans.get(1).getIamon().ID)]);
-            }
-        }
-        else
-        {
-            if (!utasitasok.control.orangutans.get(0).isAlive){orangutan.get(0).kill();}
-            if (!utasitasok.control.orangutans.get(1).isAlive){orangutan.get(1).kill();}
-        }
+    private  void update_orangutans()
+    {
+        orangutan.get(0).place(start[Integer.parseInt(utasitasok.control.orangutans.get(0).getIamon().ID)]);
+        if (utasitasok.control.orangutans.get(1).getIamon().ID!="fake") {
+            orangutan.get(1).place(start[Integer.parseInt(utasitasok.control.orangutans.get(1).getIamon().ID)]);
+        }//TODO másol
     }
 
-    private void update_pandas() {
-        for (Panda p : utasitasok.control.pandas) {
+    private void update_pandas()
+    {
+        for (Panda p:utasitasok.control.pandas) {
             StringBuilder sb = new StringBuilder(p.ID);
-            sb.delete(0, 5);
-            if (!p.isAlive) {
+            sb.delete(0,5);
+            if(!p.isAlive){
                 pandas.get(Integer.parseInt(sb.toString())).kill();
-            } else {
+            }else {
                 pandas.get(Integer.parseInt(sb.toString())).place(start[Integer.parseInt(p.getIamon().ID)]);
             }
         }
     }
 
-    private void update_lines() {
+    private void update_lines()
+    {
         lines.getChildren().clear();
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0;i<2;i++) {
             for (Unit u = utasitasok.control.orangutans.get(i); u.getHand2() != null; u = u.getHand2()) {
                 Line line = new Line();
                 line.setStartX(start[Integer.parseInt(u.getIamon().ID)].x);
@@ -159,13 +149,16 @@ public class Controller {
         }
     }
 
-    public void update_breakables() {
-        for (Breakable b : utasitasok.breakable_tiles) {
-            if (b.getRemainLifetime() == 0) {
+    public void update_breakables()
+    {
+        for (Breakable b:utasitasok.breakable_tiles) {
+            if (b.getRemainLifetime()==0)
+            {
                 b.setRemainLifetime(-1);
-                for (int i = 0; i < nei[0].length; i++) {
-                    nei[Integer.parseInt(b.ID)][i] = false;
-                    nei[i][Integer.parseInt(b.ID)] = false;
+                for (int i =0; i<nei[0].length;i++ )
+                {
+                    nei[Integer.parseInt(b.ID)][i]=false;
+                    nei[i][Integer.parseInt(b.ID)]=false;
                 }
                 start[Integer.parseInt(b.ID)].ki.setStroke(Color.ORANGE);
             }

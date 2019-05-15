@@ -4,48 +4,67 @@ package com.company;
 import java.util.Random;
 
 public class Almos extends Panda {
-    int wait = 0;
-    private int energy;
-    private boolean isEnergic = true;
-    Random rand = new Random();
-    private boolean isRelaxing = false;
 
-    public Almos() {
+	private int energy;
+	private boolean isEnergic =true;
+	Random rand = new Random();
 
-        energy = 0;
-        //energy = rand.nextInt(4);
-    }
+	public Almos() {
 
-    public void action(Fotel f) {//Csak az Álmos panda reagál rá
-        logger.depthP();
-        logger.writeMessage(this.toString() + ".Action(" + f.toString() + ")");
+		energy=4;
+		//energy = rand.nextInt(4);
+	}
 
-        if (energy<0)
-        {
-            release();
-            move(f);
-            isRelaxing = true;
-            energy = 0;
-        }
-        if (energy>=5)
-        {
-            isRelaxing = false;
-        }
-        if (isRelaxing){energy++;}
-        logger.depthM();
-    }
+	public void action(Fotel f) {//Csak az Álmos panda reagál rá
+		logger.depthP();
+		logger.writeMessage(this.toString()+".Action("+f.toString()+")");
+		if(!isEnergic) { //ha fáradt leül
 
-    @Override
-    public boolean move(Field f) {
-        logger.depthP();
-        logger.writeMessage(this.toString() + ".move(" + f.toString() + ")");
-        logger.depthM();
-        if (isRelaxing) {
-            return false;
-        } else {
-            energy--;
-            return super.move(f);
-        }
-    }
+			if (getHand1() != null) {
+				release();
+				move(f);
+				if (energy == 0) {
+					isEnergic = !isEnergic;
+					//energy = rand.nextInt(4);
+					energy=4;
+					energy++; //mivel leült ezért töltődik az energiája
+					if(energy==5) //ha kipihenti magát akkor újra energikus lesz
+						isEnergic =true;
+				}
+			}
+		}
+		logger.depthM();
+	}
+
+	@Override
+	public boolean move(Field f)
+	{
+		logger.depthP();
+		logger.writeMessage(this.toString()+".move("+f.toString()+")");
+		if (isEnergic) {  //ha nem fárasdt lép
+			energy--;     //elkezd fáradni
+			if(energy<1) //ha elfogy az energiája akkor elfárad
+				isEnergic=false;
+			if (f.getContain() == null)//Léphetek-e oda?
+			{
+
+				f.setContain(this);
+				Field temp = this.getIamon();
+				temp.setContain(null);
+				if (this.getHand1() != null) {
+					this.getHand1().move(temp);
+				}
+				this.setIamon(f);
+				logger.depthM();
+				return true;
+			} else {
+				logger.depthM();
+				return false;
+			}
+		}
+		logger.depthM();
+		return false;
+
+	}
 
 }
